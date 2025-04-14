@@ -1,0 +1,104 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AFCC1977-5F60-175D-402A-B2A8A9D359FB" name="TipoPago">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>8443918C-CDED-AEF5-DBD5-277B8E5BF17C</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="C64E2873-D1E6-DFA5-90DE-4E953C5E468A">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>ECE27719-E0EB-62D8-8F61-DFC3898AC7C8</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="1597AA73-5AFE-178C-48DA-DFC1D956E61B">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>79110511-B2AD-CF2A-B5E9-65A7CA6C637B</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TipoServicio_ID" id="0B3293A7-4B18-07E2-2C06-3C93A4A2565E">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>E5B79296-1D16-EB9E-A1A3-F88EE35316ED</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9316D7F0-4495-47B1-0AFD-5D2CCB2FD190" referredColumn="7E9462B1-2C04-D620-C1B8-4455A39DAB79"/>
+</associations>
+</Column>
+<Column name="TipoServicio_ID1" id="179AD56B-4D27-5AE8-5188-D4E6F1369712">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>21A22CD5-254A-B838-BB7A-BD81D43CF498</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9316D7F0-4495-47B1-0AFD-5D2CCB2FD190" referredColumn="40E8139A-78F0-C686-7ECB-666216EF5579"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AD92D6E7-8B8C-B0F0-ED28-715C0A5FBE81" name="TipoPago_PK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>DA17BA47-B6AA-5256-CB4B-F0617296BE25</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C64E2873-D1E6-DFA5-90DE-4E953C5E468A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B13957B5-32B3-E96E-F18F-99D93825FC08" name="TipoPago__IDX">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>6921E3FC-C890-A0E6-3C18-82AD1539B6A6</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="0B3293A7-4B18-07E2-2C06-3C93A4A2565E"/>
+<colUsage columnID="179AD56B-4D27-5AE8-5188-D4E6F1369712"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2817CBCD-6DE6-05EA-A01E-50A848CD5915" name="TipoPago_TipoServicio_FK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>6921E3FC-C890-A0E6-3C18-82AD1539B6A6</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0B3293A7-4B18-07E2-2C06-3C93A4A2565E"/>
+<colUsage columnID="179AD56B-4D27-5AE8-5188-D4E6F1369712"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
