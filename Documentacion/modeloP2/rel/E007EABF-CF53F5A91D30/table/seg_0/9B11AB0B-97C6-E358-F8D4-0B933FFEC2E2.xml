@@ -1,0 +1,88 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9B11AB0B-97C6-E358-F8D4-0B933FFEC2E2" name="TipoPremio">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>BA2970DA-4818-40E1-68C8-83F2C5A5AD27</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="1A5323D1-7CFC-FE1E-2BEE-242053AD493B">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>072CEF40-FEE4-6775-29CE-1A7F0A3A54AD</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="CDABFF7A-AA9C-57CB-7565-F01B3598E3ED">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>A8FE5EA3-2BD9-E1AA-A5D4-F5D0B01E9C89</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25</dataTypeSize>
+<ownDataTypeParameters>25,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Descripcion" id="B6C94DDC-EACD-C478-2478-DCB05467DB15">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>57447736-6A08-1B7A-096E-910BAD5C69BD</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Cliente_ID" id="88379C36-57FE-FC32-5CA1-F3E95828438B">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>0C0F6318-05C5-D7C3-6729-359E92649444</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3807DC2B-1A04-A19C-A715-D7A5A9942254" referredColumn="C908FDB5-B12F-4E83-0351-08E7FF255A49"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="14721324-BD54-607A-D140-1244D39C37C9" name="TipoPremio_PK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>358EBEDB-7B22-4701-E340-AC9B52507370</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1A5323D1-7CFC-FE1E-2BEE-242053AD493B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C783C053-1871-E62B-A415-30BB791C60C6" name="TipoPremio_Cliente_FK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>FF4E4EDA-94C5-982A-1AD4-208B978D4562</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="88379C36-57FE-FC32-5CA1-F3E95828438B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

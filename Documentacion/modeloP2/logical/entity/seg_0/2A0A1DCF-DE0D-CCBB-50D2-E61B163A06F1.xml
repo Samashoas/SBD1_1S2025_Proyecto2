@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2A0A1DCF-DE0D-CCBB-50D2-E61B163A06F1" name="ProductoServicio">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:08:58 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="907A679B-BEC5-DFF7-1F52-681EEA42BB46">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:09:07 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_Cliente" id="E32ADEC1-8D72-E806-25FF-4FFFE4FAE3A7">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:09:14 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_TipoServicio" id="4ABDBC0D-A7B8-77F8-0097-3107CF78A7FB">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:09:24 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID1" id="1F2FD5E3-1610-29F0-6225-4202D02F3611">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:09:52 UTC</createdTime>
+<generatorID>486E650B-CA3A-4C4F-4E17-6ACFA04AC78C</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<referedAttribute>37B80FE3-4157-FC86-3D62-20C599F1922B</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="07A7AC6A-95E5-21A8-A574-A7F4043B6A67" name="ProductoServicio PK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:09:13 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>907A679B-BEC5-DFF7-1F52-681EEA42BB46</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
