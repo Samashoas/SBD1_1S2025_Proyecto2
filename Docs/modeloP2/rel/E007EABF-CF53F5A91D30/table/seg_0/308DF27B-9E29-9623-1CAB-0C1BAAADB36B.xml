@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="308DF27B-9E29-9623-1CAB-0C1BAAADB36B" name="TipoTransaccion">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>5040F3CC-6EFC-7A31-A059-199B9F0C876B</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="8BA6EC42-AE85-58D8-D538-D57C86D94DDF">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>F3949316-911E-15AE-07FD-B7C197684778</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="04161F3A-DFE1-2D25-6D63-6574B2C877A3">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>4049312B-0112-5D7C-A6A3-F354A1AF5549</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Transaccion_ID" id="A251BA14-F80E-CFE7-740F-C67051523727">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>2B37311E-DBA7-B552-4E94-6B370C012890</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DF98760F-BE5A-AE19-0A4B-7AD0C50F0DB6" referredColumn="F8DC0DF5-A61B-5D62-54D0-160BF1D024F7"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A3C22809-F594-F031-1281-6D7F52CF965B" name="TipoTransaccion_PK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>079F9BDE-6910-0345-DAC3-AB432C4C1691</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8BA6EC42-AE85-58D8-D538-D57C86D94DDF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="06093AED-D855-1FEC-DB36-A630C3521FFC" name="TipoTransaccion__IDX">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>745D7469-0592-82E4-1BCC-49868D740223</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="A251BA14-F80E-CFE7-740F-C67051523727"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="05689BDB-75AF-3E80-E11A-FF35D889ED68" name="TipoTransaccion_Transaccion_FK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>745D7469-0592-82E4-1BCC-49868D740223</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A251BA14-F80E-CFE7-740F-C67051523727"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

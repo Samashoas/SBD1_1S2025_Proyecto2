@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8443918C-CDED-AEF5-DBD5-277B8E5BF17C" name="TipoPago">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 22:08:00 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="ECE27719-E0EB-62D8-8F61-DFC3898AC7C8">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 22:08:15 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nombre" id="79110511-B2AD-CF2A-B5E9-65A7CA6C637B">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 22:08:36 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID1" id="E5B79296-1D16-EB9E-A1A3-F88EE35316ED">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 22:29:32 UTC</createdTime>
+<generatorID>6921E3FC-C890-A0E6-3C18-82AD1539B6A6</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<referedAttribute>9D1E720D-8E58-CAD8-0F9C-C086320302AD</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID11" id="21A22CD5-254A-B838-BB7A-BD81D43CF498">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:10:42 UTC</createdTime>
+<generatorID>6921E3FC-C890-A0E6-3C18-82AD1539B6A6</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<referedAttribute>2FB99AB4-57AE-39A4-371A-D34299724491</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="DA17BA47-B6AA-5256-CB4B-F0617296BE25" name="TipoPago PK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 22:08:35 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>ECE27719-E0EB-62D8-8F61-DFC3898AC7C8</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

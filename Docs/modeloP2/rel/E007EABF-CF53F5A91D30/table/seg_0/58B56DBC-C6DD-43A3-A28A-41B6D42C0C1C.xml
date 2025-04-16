@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="58B56DBC-C6DD-43A3-A28A-41B6D42C0C1C" name="TipoTarjeta">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>16AA58A0-F627-A876-F4D0-649D1E0AB27E</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="8121CCC8-F901-B79F-D885-9938AD131209">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>50FA49A2-B316-8AA7-3FAF-670589F49C4D</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="6D5F821C-BCF6-9977-5007-34DE8B2BDF81">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>30AA0E6D-90F8-9145-A966-F9B0EC2C040B</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Tarjeta_ID" id="98BFD254-17DC-2225-16AF-A46616D5DBD7">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>BDD3AB99-4557-8B7A-4D37-ACED38817007</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3CA54530-A904-AFB2-E5B2-44E122C09348" referredColumn="B8E21EF6-BD2E-866C-CAF4-B509B8EA63BF"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6CDDFA7C-1C5A-0D0C-21C7-A956403DB5B1" name="TipoTarjeta_PK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>3825CF34-E139-57A1-58FA-9D1965FCD947</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8121CCC8-F901-B79F-D885-9938AD131209"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A8C25498-E13B-18D7-18AB-B9BEB30389E0" name="TipoTarjeta__IDX">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>B8FCD780-CFEB-2E2B-0C09-351A3448F101</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="98BFD254-17DC-2225-16AF-A46616D5DBD7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="545CB280-50BF-B2CA-F5BD-49216E085B60" name="TipoTarjeta_Tarjeta_FK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>B8FCD780-CFEB-2E2B-0C09-351A3448F101</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="98BFD254-17DC-2225-16AF-A46616D5DBD7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
