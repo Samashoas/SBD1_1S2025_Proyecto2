@@ -8,8 +8,8 @@
 </engineerTo>
 <sourcePk>0DB9423A-C788-C788-BB0C-2EB664400497</sourcePk>
 <identifying>false</identifying>
-<nameOnSource>obtiene de</nameOnSource>
-<nameOnTarget>da informacion a</nameOnTarget>
+<nameOnSource>pertenece</nameOnSource>
+<nameOnTarget>pertenece</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

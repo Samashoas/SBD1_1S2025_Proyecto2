@@ -59,6 +59,21 @@
 <colAssociation fkAssociation="0A84BADD-83A9-6BEC-60E7-E438F9198D00" referredColumn="C908FDB5-B12F-4E83-0351-08E7FF255A49"/>
 </associations>
 </Column>
+<Column name="Cliente_ID2" id="8C79CFAF-F04C-41B5-7DA3-590C0956F552">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-16 18:51:00 UTC</createdTime>
+<generatorID>AAF03A44-B8F4-CF3A-A509-544C6E3A2322</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="982936B8-88CE-9B17-9B9A-3788A9197B72" referredColumn="C908FDB5-B12F-4E83-0351-08E7FF255A49"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="8FEF9E1D-9271-8EAF-CB4B-1350917EC4AE" name="TipoClientes_PK">
@@ -71,6 +86,7 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="058B2331-BF37-60BF-E5E4-A7694D6AE59C"/>
+<colUsage columnID="8C79CFAF-F04C-41B5-7DA3-590C0956F552"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="1194329B-4DF4-B37D-979D-647D36F9406D" name="TipoClientes__IDX">
@@ -93,6 +109,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="656EDDA9-1515-FFEB-2224-244F62A53353"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="95557C76-62AC-0D6E-B571-8F85C07B7226" name="TipoClientes_Cliente_FKv2">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-16 18:51:00 UTC</createdTime>
+<generatorID>08C21B26-CB83-B325-7AE0-19A3D7E12FDB</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8C79CFAF-F04C-41B5-7DA3-590C0956F552"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

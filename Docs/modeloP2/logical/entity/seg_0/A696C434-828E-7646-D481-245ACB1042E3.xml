@@ -41,34 +41,6 @@
 <dataTypeSize>10</dataTypeSize>
 <ownDataTypeParameters>10,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="ID1" id="4B165A73-A72F-A579-A9E6-9C084F24FBDD">
-<createdBy>SuperUser</createdBy>
-<createdTime>2025-04-14 23:26:29 UTC</createdTime>
-<generatorID>FB75632F-7FD2-48C1-0AE9-73E9D95AFC09</generatorID>
-<ownerDesignName>modeloP2</ownerDesignName>
-<engineerTo>
-<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
-</engineerTo>
-<referedAttribute>94B03509-3EC6-B209-DAD1-CF0E8B68F3C3</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="ID11" id="87751411-81D0-1981-94A2-69B817DE276B">
-<createdBy>SuperUser</createdBy>
-<createdTime>2025-04-14 23:26:29 UTC</createdTime>
-<generatorID>FB75632F-7FD2-48C1-0AE9-73E9D95AFC09</generatorID>
-<ownerDesignName>modeloP2</ownerDesignName>
-<engineerTo>
-<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
-</engineerTo>
-<referedAttribute>A93FAFBA-98FE-FE19-5716-FE2CE8B3D35E</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="C9E678E0-DD46-0550-31D6-ACA9C8B26896" name="TipoRemesa PK">

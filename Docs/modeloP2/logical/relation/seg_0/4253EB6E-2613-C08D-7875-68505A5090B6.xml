@@ -1,20 +1,20 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_19" directorySegmentName="seg_0" id="50C518C4-4E7E-B80E-990D-639EF3AEA991">
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_39" directorySegmentName="seg_0" id="4253EB6E-2613-C08D-7875-68505A5090B6">
 <createdBy>SuperUser</createdBy>
-<createdTime>2025-04-14 23:26:04 UTC</createdTime>
+<createdTime>2025-04-16 18:44:07 UTC</createdTime>
 <ownerDesignName>modeloP2</ownerDesignName>
 <engineerTo>
 <item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
 </engineerTo>
-<sourcePk>0DB9423A-C788-C788-BB0C-2EB664400497</sourcePk>
+<sourcePk>C9E678E0-DD46-0550-31D6-ACA9C8B26896</sourcePk>
 <targetPk>7F763E09-1E0F-DF06-46C5-7F2BD46D22C8</targetPk>
-<identifying>true</identifying>
-<nameOnSource>tiene</nameOnSource>
+<identifying>false</identifying>
+<nameOnSource>tienen</nameOnSource>
 <nameOnTarget>pertenece</nameOnTarget>
-<optionalSource>true</optionalSource>
+<optionalSource>false</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
-<sourceEntity>9ABDB586-82E1-EE08-E00D-CC802835C70C</sourceEntity>
+<sourceEntity>A696C434-828E-7646-D481-245ACB1042E3</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>1B1567C1-8069-136A-53DA-D3488E133C56</targetEntity>
 <transferable>true</transferable>

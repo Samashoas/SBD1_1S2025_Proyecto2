@@ -9,8 +9,8 @@
 <sourcePk>E654747B-9ECF-6435-EAB1-6837FE309338</sourcePk>
 <targetPk>01FEBA7C-4557-61A9-EC68-684BCCCFF2D1</targetPk>
 <identifying>false</identifying>
-<nameOnSource>acredita a</nameOnSource>
-<nameOnTarget>obtiene de</nameOnTarget>
+<nameOnSource>genera</nameOnSource>
+<nameOnTarget>pertenece</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

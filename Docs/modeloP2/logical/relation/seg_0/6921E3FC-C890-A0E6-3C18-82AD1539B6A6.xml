@@ -8,8 +8,8 @@
 </engineerTo>
 <sourcePk>637DCAF1-CF66-B6D1-4745-850DE80854F5</sourcePk>
 <identifying>false</identifying>
-<nameOnSource>paga con</nameOnSource>
-<nameOnTarget>servicio de</nameOnTarget>
+<nameOnSource>pertenece</nameOnSource>
+<nameOnTarget>posee</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

@@ -47,6 +47,21 @@
 <colAssociation fkAssociation="8EA64EA7-D66F-C0E5-73EC-03E6B07788FD" referredColumn="97C755FF-3FAC-04D2-C905-C9FBD354ABE2"/>
 </associations>
 </Column>
+<Column name="Seguro_ID2" id="36AC28EA-19DA-E13A-E824-9256BA58257B">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-16 18:51:00 UTC</createdTime>
+<generatorID>0AB8F106-5CF4-2E63-FC44-B839C1911FED</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9B91F499-254D-72A1-9907-885E64D0B837" referredColumn="97C755FF-3FAC-04D2-C905-C9FBD354ABE2"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="679701F9-2726-0EC6-8BF6-6CC01DDE52E5" name="TipoSeguro_PK">
@@ -81,6 +96,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="0FEBDDB0-9C64-E268-60EB-113455CCCD66"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7FDB1DB4-B3FB-6276-A6F8-40567148E933" name="TipoSeguro_Seguro_FKv2">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-16 18:51:00 UTC</createdTime>
+<generatorID>D990669B-F5D8-234D-6865-A59D5567141B</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="36AC28EA-19DA-E13A-E824-9256BA58257B"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

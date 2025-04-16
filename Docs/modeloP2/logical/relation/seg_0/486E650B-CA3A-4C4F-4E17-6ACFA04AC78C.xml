@@ -9,8 +9,8 @@
 <sourcePk>0DB9423A-C788-C788-BB0C-2EB664400497</sourcePk>
 <targetPk>07A7AC6A-95E5-21A8-A574-A7F4043B6A67</targetPk>
 <identifying>false</identifying>
-<nameOnSource>obtiene de</nameOnSource>
-<nameOnTarget>ofrece a</nameOnTarget>
+<nameOnSource>adquiere</nameOnSource>
+<nameOnTarget>adquiere</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

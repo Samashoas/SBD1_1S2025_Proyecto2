@@ -47,6 +47,21 @@
 <colAssociation fkAssociation="37DBFFA8-70CA-FE3C-DF2C-4264CAD71AA9" referredColumn="3F81FA74-BEE3-0EE2-6CB8-EDCA450CF7D9"/>
 </associations>
 </Column>
+<Column name="Notificaciones_ID2" id="F697F902-D935-C740-105D-89BBCA8DEE1F">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-16 18:51:00 UTC</createdTime>
+<generatorID>23E76826-B459-C045-18C1-47B5CEB3F21F</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DE733789-1629-FDA4-E1E6-0E299074CE65" referredColumn="3F81FA74-BEE3-0EE2-6CB8-EDCA450CF7D9"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="02F3AA98-7999-216A-F2C2-5056DCF3E1A6" name="TipoNotificacion_PK">
@@ -59,7 +74,7 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="C6F94C61-4F62-7D2F-5DBF-B9EFCCDD72FB"/>
-<colUsage columnID="4A13FD15-8A1B-C1BD-A5D5-0AFF2F0BB1BE"/>
+<colUsage columnID="F697F902-D935-C740-105D-89BBCA8DEE1F"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="C898AEB1-1F80-B4D4-3B16-A59F42067A99" name="TipoNotificacion_Notificaciones_FK">
@@ -71,6 +86,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="4A13FD15-8A1B-C1BD-A5D5-0AFF2F0BB1BE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="54F47DD3-8349-5613-D380-17E92F44A161" name="TipoNotificacion_Notificaciones_FKv2">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-16 18:51:00 UTC</createdTime>
+<generatorID>5BD2F295-4766-83AB-DC0A-5A7BA9D38BB1</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F697F902-D935-C740-105D-89BBCA8DEE1F"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

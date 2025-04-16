@@ -47,7 +47,7 @@
 <colAssociation fkAssociation="9316D7F0-4495-47B1-0AFD-5D2CCB2FD190" referredColumn="7E9462B1-2C04-D620-C1B8-4455A39DAB79"/>
 </associations>
 </Column>
-<Column name="TipoServicio_ID1" id="179AD56B-4D27-5AE8-5188-D4E6F1369712">
+<Column name="TipoServicio_ProductoServicio_ID" id="179AD56B-4D27-5AE8-5188-D4E6F1369712">
 <createdBy>SuperUser</createdBy>
 <createdTime>2025-04-14 23:48:38 UTC</createdTime>
 <generatorID>21A22CD5-254A-B838-BB7A-BD81D43CF498</generatorID>

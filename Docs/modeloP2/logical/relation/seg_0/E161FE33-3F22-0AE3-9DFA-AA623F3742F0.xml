@@ -7,10 +7,9 @@
 <item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
 </engineerTo>
 <sourcePk>0DB9423A-C788-C788-BB0C-2EB664400497</sourcePk>
-<targetPk>1F919C6B-98B4-9050-883C-90D8F62420C7</targetPk>
 <identifying>false</identifying>
-<nameOnSource>notifica de</nameOnSource>
-<nameOnTarget>notifica a</nameOnTarget>
+<nameOnSource>posee</nameOnSource>
+<nameOnTarget>pertenecen</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

@@ -9,8 +9,8 @@
 <sourcePk>E654747B-9ECF-6435-EAB1-6837FE309338</sourcePk>
 <targetPk>079F9BDE-6910-0345-DAC3-AB432C4C1691</targetPk>
 <identifying>false</identifying>
-<nameOnSource>tipo de</nameOnSource>
-<nameOnTarget>transaccion de</nameOnTarget>
+<nameOnSource>pertenece</nameOnSource>
+<nameOnTarget>tiene</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

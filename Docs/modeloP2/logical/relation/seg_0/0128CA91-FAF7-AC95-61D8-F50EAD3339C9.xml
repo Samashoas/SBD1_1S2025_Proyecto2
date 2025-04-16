@@ -9,8 +9,8 @@
 <sourcePk>0DB9423A-C788-C788-BB0C-2EB664400497</sourcePk>
 <targetPk>C54EDA59-CD43-6638-F531-C52F34706106</targetPk>
 <identifying>false</identifying>
-<nameOnSource>presta de</nameOnSource>
-<nameOnTarget>presta a</nameOnTarget>
+<nameOnSource>solicita</nameOnSource>
+<nameOnTarget>pertenece</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

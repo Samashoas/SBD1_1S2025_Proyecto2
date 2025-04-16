@@ -54,10 +54,10 @@
 <logicalDatatype>LOGDT040</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="ID1" id="9F3A145B-139D-8868-FE64-B2E9E7D63DAB">
+<Attribute name="ID1" id="AAF03A44-B8F4-CF3A-A509-544C6E3A2322">
 <createdBy>SuperUser</createdBy>
-<createdTime>2025-04-14 22:49:10 UTC</createdTime>
-<generatorID>E7024C4D-6646-C85B-836C-E68D2B3542AF</generatorID>
+<createdTime>2025-04-16 18:38:52 UTC</createdTime>
+<generatorID>08C21B26-CB83-B325-7AE0-19A3D7E12FDB</generatorID>
 <ownerDesignName>modeloP2</ownerDesignName>
 <engineerTo>
 <item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
@@ -80,6 +80,7 @@
 <pk>true</pk>
 <usedAttributes>
 <attributeRef>5B6966E3-2694-C79D-ECCF-678B3D23BB93</attributeRef>
+<attributeRef>AAF03A44-B8F4-CF3A-A509-544C6E3A2322</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

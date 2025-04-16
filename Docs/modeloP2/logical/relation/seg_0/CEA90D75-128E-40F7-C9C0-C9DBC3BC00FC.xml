@@ -9,8 +9,8 @@
 <sourcePk>0DB9423A-C788-C788-BB0C-2EB664400497</sourcePk>
 <targetPk>F2123E4C-033A-3722-3C42-5950AAF52F22</targetPk>
 <identifying>false</identifying>
-<nameOnSource>tiene </nameOnSource>
-<nameOnTarget>ofrece a</nameOnTarget>
+<nameOnSource>tiene</nameOnSource>
+<nameOnTarget>tiene</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

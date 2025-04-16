@@ -95,6 +95,51 @@
 <colAssociation fkAssociation="79BED08B-30AA-DB36-EAAA-F28DD38A74C4" referredColumn="C908FDB5-B12F-4E83-0351-08E7FF255A49"/>
 </associations>
 </Column>
+<Column name="Cuenta_ID" id="5E482348-8017-E7AB-A6C0-A916A7DED60C">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-16 18:51:00 UTC</createdTime>
+<generatorID>683B4F6F-0E3E-D9FF-B87B-A8B0AAEA9735</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="371E5FD1-B27B-EBB0-78F8-1FDD2D18D386" referredColumn="19871EB8-DA73-8B48-C4A9-734D293FC928"/>
+</associations>
+</Column>
+<Column name="Cuenta_TipoCuenta_ID" id="93C46CFA-7CEA-9B99-AC50-DB059F0E9719">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-16 18:51:00 UTC</createdTime>
+<generatorID>F39AE73D-0063-96A9-19AB-5B7F41F55321</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="371E5FD1-B27B-EBB0-78F8-1FDD2D18D386" referredColumn="F8489FCB-1CD3-7FF5-97A0-9ACAA5183781"/>
+</associations>
+</Column>
+<Column name="TipoRemesa_ID" id="07407E20-FE28-250A-9631-47918F6166C8">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-16 18:51:00 UTC</createdTime>
+<generatorID>C5309BBC-A795-3B28-8058-37B1EC089EE0</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="478C3F6F-485C-3ED7-76C7-3F8313CD597E" referredColumn="01D7C0E8-0BD9-687B-B355-2EE5C6891F34"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="2599423A-703F-1756-EE4F-3A84EA2E1BB2" name="Remesa_PK">
@@ -108,6 +153,8 @@
 <indexColumnUsage>
 <colUsage columnID="A1CF3330-892B-D81B-9DDB-8AFA82FDA439"/>
 <colUsage columnID="D9A5966F-6991-E050-88C2-8BBBD4A2B104"/>
+<colUsage columnID="5E482348-8017-E7AB-A6C0-A916A7DED60C"/>
+<colUsage columnID="93C46CFA-7CEA-9B99-AC50-DB059F0E9719"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="9540A8E8-31AB-BD74-A96F-E225E416AD2E" name="Remesa_Cliente_FK">
@@ -119,6 +166,29 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="D9A5966F-6991-E050-88C2-8BBBD4A2B104"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E594DE67-2053-99D2-F0BC-5A8B97D9EBFA" name="Remesa_Cuenta_FK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-16 18:51:00 UTC</createdTime>
+<generatorID>5AF6CCB7-9CB0-F3E3-8959-B47FC01D6AC6</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5E482348-8017-E7AB-A6C0-A916A7DED60C"/>
+<colUsage columnID="93C46CFA-7CEA-9B99-AC50-DB059F0E9719"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="83BD42DC-37BB-EE5D-0FEF-854022E690F8" name="Remesa_TipoRemesa_FK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-16 18:51:00 UTC</createdTime>
+<generatorID>4253EB6E-2613-C08D-7875-68505A5090B6</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="07407E20-FE28-250A-9631-47918F6166C8"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

@@ -7,7 +7,6 @@
 <item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
 </engineerTo>
 <sourcePk>01FEBA7C-4557-61A9-EC68-684BCCCFF2D1</sourcePk>
-<targetPk>E654747B-9ECF-6435-EAB1-6837FE309338</targetPk>
 <identifying>false</identifying>
 <nameOnSource>debita a</nameOnSource>
 <nameOnTarget>obtiene de</nameOnTarget>
