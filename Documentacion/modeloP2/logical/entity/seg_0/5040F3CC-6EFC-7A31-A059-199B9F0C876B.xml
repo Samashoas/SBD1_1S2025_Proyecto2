@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="5040F3CC-6EFC-7A31-A059-199B9F0C876B" name="TipoTransaccion">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 22:10:18 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="F3949316-911E-15AE-07FD-B7C197684778">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 22:10:25 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nombre" id="4049312B-0112-5D7C-A6A3-F354A1AF5549">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 22:10:34 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID1" id="2B37311E-DBA7-B552-4E94-6B370C012890">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:19:00 UTC</createdTime>
+<generatorID>745D7469-0592-82E4-1BCC-49868D740223</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<referedAttribute>F193E404-06C0-ADBC-CD46-0890AABDCDAA</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="079F9BDE-6910-0345-DAC3-AB432C4C1691" name="TipoTransaccion PK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 22:10:32 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>F3949316-911E-15AE-07FD-B7C197684778</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
