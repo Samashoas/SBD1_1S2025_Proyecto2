@@ -1,0 +1,14 @@
+/*
+Utilizar SOLO EN CASO DE EMERGENCIA
+SE ELIMINAN TODAS LAS TABLAS DEL ESQUEMA ACTUAL
+*/
+
+BEGIN
+   FOR cur_rec IN (SELECT table_name FROM user_tables) LOOP
+      BEGIN
+         EXECUTE IMMEDIATE 'DROP TABLE ' || cur_rec.table_name || ' CASCADE CONSTRAINTS';
+      EXCEPTION
+         WHEN OTHERS THEN NULL;
+      END;
+   END LOOP;
+END;
