@@ -97,7 +97,7 @@
 <colAssociation fkAssociation="83EA961F-31AD-1E0E-9B1B-FACF072FABE0" referredColumn="19871EB8-DA73-8B48-C4A9-734D293FC928"/>
 </associations>
 </Column>
-<Column name="ID3" id="32C08891-275F-FABE-7BC0-02E061ED5776">
+<Column name="Cuenta_TipoCuenta_ID" id="32C08891-275F-FABE-7BC0-02E061ED5776">
 <createdBy>SuperUser</createdBy>
 <createdTime>2025-04-16 18:51:00 UTC</createdTime>
 <generatorID>1093454C-AD63-E8DC-9314-99EFF525FD80</generatorID>
