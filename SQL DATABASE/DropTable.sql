@@ -20,7 +20,7 @@ BEGIN
          EXECUTE IMMEDIATE 'DROP SEQUENCE ' || seq_rec.sequence_name;
          DBMS_OUTPUT.PUT_LINE('Secuencia eliminada ' || seq_rec.sequence_name );
       EXCEPTION
-         WHEN OTHERS THEN DBMS_OUTPUT.PUT_LINE('Error al eliminar secuencia ' || seq_rec.sequence_name || ': ' || SQLERRM);
+         WHEN OTHERS THEN NULL;
          END;
    END LOOP;
 END;
