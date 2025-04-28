@@ -149,7 +149,7 @@ BEGIN
     FROM (
         SELECT COUNT(*) AS cantidad_servicios
         FROM PRODUCTO_SERVICIO ps -- Se le da el nombre de ps a la tabla 
-        WHERE ps.fecha BETWEEN p_fecha_inicial AND p_fecha_final
+        BETWEEN p_fecha_inicial AND p_fecha_final
         GROUP BY ps.id_cliente
     );
     
@@ -161,4 +161,50 @@ EXCEPTION
     WHEN OTHERS THEN
         RAISE_APPLICATION_ERROR(-20004, 'Error inesperado: ' || SQLERRM);
 END fn_avg_servicies;
+/
+
+/*
+    Funcion que consulta el valor de todos los servicios pagados de un cliente en una fecha determinada.
+    Toma como parámetros el ID del cliente y dos fechas, inicial y final para determinar el rango de tiempo.
+    Valida que el cliente exista (si no existe da un error), y que las fechas sean válidas.
+*/
+CREATE OR REPLACE FUNCTION fn_total_amount_servicies_by_client(
+    p_id_cliente IN NUMBER,
+    p_fecha_inicial IN DATE,
+    p_fecha_final IN DATE
+) RETURN NUMBER IS
+    v_total NUMBER := 0;
+    v_nombre_cliente VARCHAR(30);
+BEGIN
+    -- Valida que exista el cliente
+    BEGIN
+        SELECT nombre || ' ' || apellido INTO v_nombre_cliente
+        FROM CLIENTE
+        WHERE id = p_id_cliente;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE_APPLICATION_ERROR(-20001, 'No se encontró ningún cliente con ID: ' || p_id_cliente);
+    END;
+
+    -- Valida que las fechas sean válidas
+    IF p_fecha_inicial IS NULL OR p_fecha_final IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20002, 'Las fechas no pueden ser nulas.');
+    END IF;
+    
+    IF p_fecha_inicial > p_fecha_final THEN
+        RAISE_APPLICATION_ERROR(-20003, 'La fecha inicial no puede ser mayor a la fecha final.');
+    END IF;
+
+    -- Calcula la suma del valor de todos los servicios del cliente
+    SELECT NVL(SUM(s.monto), 0) INTO v_total
+    FROM PRODUCTO_SERVICIO ps
+    JOIN SERVICIO s ON ps.id_servicio = s.id
+    WHERE ps.id_cliente = p_id_cliente;
+    
+    RETURN v_total;
+    
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20004, 'Error inesperado: ' || SQLERRM);
+END fn_total_amount_servicies_by_client;
 /
