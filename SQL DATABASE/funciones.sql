@@ -16,7 +16,7 @@ CREATE OR REPLACE FUNCTION fn_current_money_by_client(
 BEGIN
     /*
         Obtiene el nombre y el apellido del cliente en base al ID.
-        En caso de que no encuentre la información, se le asignará null
+        En caso de que no encuentre la información, dará un error.
     */
     BEGIN
         SELECT nombre || ' ' || apellido INTO v_nombre_cliente
@@ -24,12 +24,12 @@ BEGIN
         WHERE id = p_id_cliente;
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            v_nombre_cliente := NULL;
+            RAISE_APPLICATION_ERROR(-20001, 'No se encontró ningún cliente con ID: ' || p_id_cliente);
     END;
 
     /*
         Obtiene el número de cuenta en base al ID.
-        En caso de que no encuentre la información, se le asignará null
+        En caso de que no encuentre la información, dará un error.
     */
     BEGIN
         SELECT numero_cuenta INTO v_numero_cuenta
@@ -37,7 +37,7 @@ BEGIN
         WHERE id = p_id_cuenta;
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            v_numero_cuenta := NULL;
+            RAISE_APPLICATION_ERROR(-20002, 'No se encontró ninguna cuenta con ID: ' || p_id_cuenta);
     END;
 
     /*
@@ -45,24 +45,7 @@ BEGIN
         Si el resultado es 0, significa que no existe el cliente o la cuenta.
         Si el resultado es mayor que 0, significa que existe el cliente o la cuenta.
     */
-    -- Valida que exista el cliente
-    SELECT COUNT(*) INTO v_existe_cliente
-    FROM CLIENTE
-    WHERE id = p_id_cliente;
-    
-    IF v_existe_cliente = 0 THEN
-        RAISE_APPLICATION_ERROR(-20001, 'El cliente: ' || v_nombre_cliente || ' no existe');
-    END IF;
-    
-    -- Validar que exista la cuenta
-    SELECT COUNT(*) INTO v_existe_cuenta
-    FROM CUENTA
-    WHERE id = p_id_cuenta;
-    
-    IF v_existe_cuenta = 0 THEN
-        RAISE_APPLICATION_ERROR(-20002, 'La cuenta: ' || v_numero_cuenta || ' no existe');
-    END IF;
-    
+
     -- Validar que la cuenta sea del cliente especificado
     SELECT COUNT(*) INTO v_cuenta_de_cliente
     FROM CUENTA
@@ -86,3 +69,57 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20005, 'Error inesperado: ' || SQLERRM);
 END fn_current_money_by_client;
 /
+
+/*
+    Función que obtiene la cantidad de productos o srtvicios de un cliente entre las fechas establecidas.
+    Toma como parámetros el ID del cliente y dos fechas, la inicial y la final para determinar el rango de tiempo.
+    Además se valida que el cliente exista (si no existe da un error), y que las fechas sean válidas.
+*/
+
+CREATE OR REPLACE FUNCTION fn_amount_servicies_by_client(
+    p_id_cliente IN NUMBER,
+    p_fecha_inicial IN DATE,
+    p_fecha_final IN DATE
+) RETURN NUMBER IS
+    v_cantidad NUMBER := 0;
+    v_nombre_cliente VARCHAR(30);
+    v_existe_cliente NUMBER;
+BEGIN
+    /*
+        Obtiene el nombre y el apellido del cliente en base al ID.
+        En caso de que no encuentre la información, dará un error.
+    */
+    BEGIN
+        SELECT nombre || ' ' || apellido INTO v_nombre_cliente
+        FROM CLIENTE
+        WHERE id = p_id_cliente;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE_APPLICATION_ERROR(-20001, 'No se encontró ningún cliente con ID: ' || p_id_cliente);
+    END;
+
+    -- Valida que las fechas no sean nulas
+    IF p_fecha_inicial IS NULL OR p_fecha_final IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20002, 'Las fechas no pueden ser nulas.');
+    END IF;
+
+    -- Valida que las fechas sean válidas
+    IF p_fecha_inicial > p_fecha_final THEN
+        RAISE_APPLICATION_ERROR(-20002, 'La fecha inicial no puede ser mayor a la fecha final.');
+    END IF;
+
+    -- Ahora sí realiza la consulta
+    SELECT COUNT(*) INTO v_cantidad
+    FROM PRODUCTO_SERVICIO ps -- Se le da el nombre de ps a la tabla 
+    WHERE ps.id_cliente = p_id_cliente;
+    
+    RETURN v_cantidad;
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RAISE_APPLICATION_ERROR(-20003, 'Error al obtener los datos');
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20004, 'Error inesperado: ' || SQLERRM);
+END fn_amount_servicies_by_client;
+/
+
