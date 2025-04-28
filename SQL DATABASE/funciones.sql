@@ -123,3 +123,42 @@ EXCEPTION
 END fn_amount_servicies_by_client;
 /
 
+/*
+    Funcion que calcula el promedio de los servicios o productos de los clientes.
+    Toma como parámetros dos fechas, la inicial y la final, con esto determina el rango de tiempo a consultar.
+    Valida que las fechas sean válidas y no sean nulas.
+*/
+CREATE OR REPLACE FUNCTION fn_avg_servicies(
+    p_fecha_inicial IN DATE,
+    p_fecha_final IN DATE
+) RETURN NUMBER IS
+    v_promedio NUMBER;
+BEGIN
+    -- Valida que las fechas no sean nulas
+    IF p_fecha_inicial IS NULL OR p_fecha_final IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Las fechas no pueden ser nulas.');
+    END IF;
+
+    -- Valida que las fechas sean válidas
+    IF p_fecha_inicial > p_fecha_final THEN
+        RAISE_APPLICATION_ERROR(-20002, 'La fecha inicial no puede ser mayor a la fecha final.');
+    END IF;
+
+    -- Ahora sí realiza la consulta
+    SELECT AVG(cantidad_servicios) INTO v_promedio
+    FROM (
+        SELECT COUNT(*) AS cantidad_servicios
+        FROM PRODUCTO_SERVICIO ps -- Se le da el nombre de ps a la tabla 
+        WHERE ps.fecha BETWEEN p_fecha_inicial AND p_fecha_final
+        GROUP BY ps.id_cliente
+    );
+    
+    RETURN NVL(v_promedio, 0);
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN 0;
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20004, 'Error inesperado: ' || SQLERRM);
+END fn_avg_servicies;
+/
