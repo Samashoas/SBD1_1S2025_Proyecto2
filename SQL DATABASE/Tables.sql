@@ -125,7 +125,9 @@ CREATE TABLE SEGURO(
     cantidad_pagos NUMBER NOT NULL,
     meses_asegurado INTEGER NOT NULL,
     contratacion DATE NOT NULL,
-    fecha_vencimiento DATE NOT NULL
+    fecha_vencimiento DATE NOT NULL,
+    id_tipo_seguro NUMBER NOT NULL REFERENCES TIPOSEGURO(id),
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id)
 );
 
 CREATE TABLE TRANSACCION(
@@ -153,4 +155,6 @@ CREATE TABLE REMESA(
     id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
     id_tipo_remesa NUMBER NOT NULL REFERENCES TIPOREMESA(id),
     id_tipo_cuenta NUMBER NOT NULL REFERENCES CUENTA(id)
-); 
+);
+
+
