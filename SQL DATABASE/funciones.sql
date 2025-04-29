@@ -208,3 +208,65 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20004, 'Error inesperado: ' || SQLERRM);
 END fn_total_amount_servicies_by_client;
 /
+
+/*
+    Funcion que consulta el valor mensual a pagar del prestamo de un cliente-
+    Toma como parámetros el ID del cliente y el ID del prestaom.
+    Valida que el cliente exista (si no existe da un error), y que el prestamo exista (si no existe da un error).
+*/
+CREATE OR REPLACE FUNCTION fn_next_payment(
+    p_id_cliente IN NUMBER,
+    p_id_prestamo IN NUMBER
+) RETURN NUMBER IS
+    v_pago_mensual NUMBER := 0;
+    v_nombre_cliente VARCHAR(100);
+    v_monto_prestamo NUMBER;
+    v_tasa_interes NUMBER;
+    v_meses NUMBER;
+    v_prestamo_cliente NUMBER;
+BEGIN
+    -- Validar que exista el cliente
+    BEGIN
+        SELECT nombre || ' ' || apellido INTO v_nombre_cliente
+        FROM CLIENTE
+        WHERE id = p_id_cliente;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE_APPLICATION_ERROR(-20001, 'No se encontró ningún cliente con ID: ' || p_id_cliente);
+    END;
+    
+    -- Validar que exista el préstamo
+    BEGIN
+        SELECT COUNT(*) INTO v_prestamo_cliente
+        FROM PRESTAMO
+        WHERE id = p_id_prestamo;
+        
+        IF v_prestamo_cliente = 0 THEN
+            RAISE_APPLICATION_ERROR(-20002, 'No se encontró ningún préstamo con ID: ' || p_id_prestamo);
+        END IF;
+    END;
+    
+    -- Validar que el préstamo pertenezca al cliente
+    SELECT COUNT(*) INTO v_prestamo_cliente
+    FROM PRESTAMO
+    WHERE id = p_id_prestamo AND id_cliente = p_id_cliente;
+    
+    IF v_prestamo_cliente = 0 THEN
+        RAISE_APPLICATION_ERROR(-20003, 'El préstamo no pertenece al cliente: ' || v_nombre_cliente);
+    END IF;
+    
+    -- Obtener los datos del préstamo
+    SELECT monto_prestamo, tasa_interes, meses
+    INTO v_monto_prestamo, v_tasa_interes, v_meses
+    FROM PRESTAMO
+    WHERE id = p_id_prestamo;
+    
+    v_pago_mensual := (v_monto_prestamo / v_meses) + (v_monto_prestamo * (v_tasa_interes / 12));
+    
+    RETURN v_pago_mensual;
+    
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20004, 'Error inesperado: ' || SQLERRM);
+END fn_next_payment;
+/
