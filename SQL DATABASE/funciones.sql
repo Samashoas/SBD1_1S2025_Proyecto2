@@ -273,6 +273,11 @@ EXCEPTION
 END fn_next_payment;
 /
 
+/*
+    Funcion que consulta el cliente con la mayor cantidad de pagos realizados en una fecha determinada
+    Toma como parámetros dos fechas, la inicial y la final, con esto determina el rango de tiempo a consultar.
+    Valida que las fechas sean correctas y no nulas.
+*/
 CREATE OR REPLACE FUNCTION fn_max_amount_products(
     p_fecha_inicial IN DATE,
     p_fecha_final IN DATE
@@ -305,4 +310,43 @@ EXCEPTION
     WHEN OTHERS THEN
         RAISE_APPLICATION_ERROR(-20003, 'Error inesperado: ' || SQLERRM);
 END fn_max_amount_products;
+/
+
+/*
+    Función que consulta al cliente con l mayor monto de pagos realizados en una fecha determinada.
+    Toma como parámtros la fecha inicial y final, con esto determina el rango de fechas a consultar.
+    Valida que las fechas sean válidas y no nulas.
+*/
+CREATE OR REPLACE FUNCTION fn_max_value_products(
+    p_fecha_inicial IN DATE,
+    p_fecha_final IN DATE
+) RETURN NUMBER IS
+    v_max_monto NUMBER := 0;
+BEGIN 
+    -- Validar que las fechas sean válidas
+    IF p_fecha_inicial IS NULL OR p_fecha_final IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Las fechas no pueden ser nulas.');
+    END IF;
+
+    IF p_fecha_inicial > p_fecha_final THEN
+        RAISE_APPLICATION_ERROR(-20002, 'La fecha inicial no puede ser mayor a la fecha final.');
+    END IF;
+
+    SELECT MAX(monto_total) INTO v_max_monto
+    FROM (
+        SELECT ps.id_cliente, NVL(SUM(s.monto),0) AS monto_total
+        FROM PRODUCTO_SERVICIO ps
+        JOIN SERVICIO s ON ps.id_servicio = s.id
+        WHERE ps.fecha_contratacion BETWEEN p_fecha_inicial AND p_fecha_final
+        GROUP BY ps.id_cliente
+    );
+
+    RETURN NVL(v_max_monto, 0);
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN 0;
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20003, 'Error inesperado: ' || SQLERRM);
+END fn_max_value_products;
 /
