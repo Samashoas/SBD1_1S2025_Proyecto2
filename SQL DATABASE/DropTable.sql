@@ -12,3 +12,16 @@ BEGIN
       END;
    END LOOP;
 END;
+/
+
+BEGIN 
+   FOR seq_rec IN (SELECT sequence_name FROM user_sequences) LOOP
+      BEGIN
+         EXECUTE IMMEDIATE 'DROP SEQUENCE ' || seq_rec.sequence_name;
+         DBMS_OUTPUT.PUT_LINE('Secuencia eliminada ' || seq_rec.sequence_name );
+      EXCEPTION
+         WHEN OTHERS THEN NULL;
+         END;
+   END LOOP;
+END;
+/
