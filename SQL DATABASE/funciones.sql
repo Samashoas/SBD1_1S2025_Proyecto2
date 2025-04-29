@@ -111,7 +111,8 @@ BEGIN
     -- Ahora sí realiza la consulta
     SELECT COUNT(*) INTO v_cantidad
     FROM PRODUCTO_SERVICIO ps -- Se le da el nombre de ps a la tabla 
-    WHERE ps.id_cliente = p_id_cliente;
+    WHERE ps.id_cliente = p_id_cliente
+    AND ps.fecha_contratacion BETWEEN p_fecha_inicial AND p_fecha_final;
     
     RETURN v_cantidad;
 
@@ -149,7 +150,7 @@ BEGIN
     FROM (
         SELECT COUNT(*) AS cantidad_servicios
         FROM PRODUCTO_SERVICIO ps -- Se le da el nombre de ps a la tabla 
-        BETWEEN p_fecha_inicial AND p_fecha_final
+        WHERE ps.fecha_contratacion BETWEEN p_fecha_inicial AND p_fecha_final
         GROUP BY ps.id_cliente
     );
     
@@ -199,7 +200,8 @@ BEGIN
     SELECT NVL(SUM(s.monto), 0) INTO v_total
     FROM PRODUCTO_SERVICIO ps
     JOIN SERVICIO s ON ps.id_servicio = s.id
-    WHERE ps.id_cliente = p_id_cliente;
+    WHERE ps.id_cliente = p_id_cliente
+    AND ps.fecha_contratacion BETWEEN p_fecha_inicial AND p_fecha_final;
     
     RETURN v_total;
     
@@ -269,4 +271,38 @@ EXCEPTION
     WHEN OTHERS THEN
         RAISE_APPLICATION_ERROR(-20004, 'Error inesperado: ' || SQLERRM);
 END fn_next_payment;
+/
+
+CREATE OR REPLACE FUNCTION fn_max_amount_products(
+    p_fecha_inicial IN DATE,
+    p_fecha_final IN DATE
+) RETURN NUMBER IS
+    v_max_cantidad NUMBER := 0;
+BEGIN
+    -- Validar que las fechas sean válidas
+    IF p_fecha_inicial IS NULL OR p_fecha_final IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Las fechas no pueden ser nulas.');
+    END IF;
+
+    IF p_fecha_inicial > p_fecha_final THEN
+        RAISE_APPLICATION_ERROR(-20002, 'La fecha inicial no puede ser mayor a la fecha final.');
+    END IF;
+
+    -- Consultar con fechas especificadas
+    SELECT MAX(cantidad) INTO v_max_cantidad
+    FROM (
+        SELECT id_cliente, COUNT(*) AS cantidad
+        FROM PRODUCTO_SERVICIO ps
+        WHERE ps.fecha_contratacion BETWEEN p_fecha_inicial AND p_fecha_final
+        GROUP BY id_cliente
+    );
+    
+    RETURN NVL(v_max_cantidad, 0);
+    
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN 0;
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20003, 'Error inesperado: ' || SQLERRM);
+END fn_max_amount_products;
 /
