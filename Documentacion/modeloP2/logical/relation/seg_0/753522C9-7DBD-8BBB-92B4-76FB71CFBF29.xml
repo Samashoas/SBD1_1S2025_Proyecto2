@@ -7,7 +7,6 @@
 <item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
 </engineerTo>
 <sourcePk>BDE17FE2-BB98-E1F5-3180-E7164AFAD39A</sourcePk>
-<targetPk>01FEBA7C-4557-61A9-EC68-684BCCCFF2D1</targetPk>
 <identifying>true</identifying>
 <nameOnSource>pertenece</nameOnSource>
 <nameOnTarget>tiene</nameOnTarget>
