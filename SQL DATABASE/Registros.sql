@@ -85,6 +85,38 @@ BEGIN
             RAISE;
 END;
 /
+
+/*
+CREATE TABLE CUENTA(
+    id NUMBER PRIMARY KEY,
+    numero_cuenta NUMBER(16,0) NOT NULL, --Generar random no repetible
+    MontoApertura DECIMAL NOT NULL,
+    Saldo DECIMAL NOT NULL,
+    descripcion VARCHAR(100) NOT NULL,
+    fecha_apertura TIMESTAMP NOT NULL,
+    id_tipo_cuenta NUMBER NOT NULL REFERENCES TIPOCUENTAS(id),
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
+    creation DATE DEFAULT SYSDATE,
+    Data_Update DATE DEFAULT SYSDATE
+);
+CREATE SEQUENCE seq_cuenta START WITH 1 INCREMENT BY 1;
+*/
+-- sp_register_new_account(montoApertura, saldoCuenta, Descripcion, FechaApertura, TipoCuenta, idCliente, otrosDetalles)
+CREATE OR REPLACE PROCEDURE sp_register_new_account(
+    p_numero_cuenta IN NUMBER,
+    p_monto_apertura IN NUMBER,
+    p_descripcion IN VARCHAR2,
+    p_saldo IN NUMBER,
+    p_fecha_apertura IN TIMESTAMP,
+    p_id_tipo_cuenta IN NUMBER,
+    p_id_cliente IN NUMBER
+)AS
+BEGIN
+    INSERT INTO CUENTA (id, numero_cuenta, MontoApertura, Saldo, fecha_apertura, id_tipo_cuenta, id_cliente, descripcion)
+    VALUES (seq_cuenta.NEXTVAL, p_numero_cuenta, p_monto_apertura, p_saldo, p_fecha_apertura, p_id_tipo_cuenta, p_id_cliente, p_descripcion);
+    COMMIT;
+END;
+
 /*
 DROP PROCEDURE sp_register_new_type_client;
 DROP PROCEDURE sp_register_new_type_account;

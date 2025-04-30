@@ -1,0 +1,12 @@
+CREATE OR REPLACE TRIGGER trg_generate_numero_cuenta
+BEFORE INSERT ON CUENTA
+FOR EACH ROW
+BEGIN
+    LOOP
+        :NEW.numero_cuenta := TRUNC(DBMS_RANDOM.VALUE(1000000000000000, 9999999999999999));
+        EXIT WHEN NOT EXISTS (
+            SELECT 1 FROM CUENTA WHERE numero_cuenta = :NEW.numero_cuenta
+        );
+    END LOOP;
+END;
+/
