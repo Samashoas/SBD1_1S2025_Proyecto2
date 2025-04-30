@@ -108,3 +108,27 @@ BEGIN
     DBMS_SQL.RETURN_RESULT(result);
 END;
 /
+
+CREATE OR REPLACE PROCEDURE sp_comming_money_by_client (
+    idCliente IN INTEGER
+)
+AS
+    result SYS_REFCURSOR;
+
+    BEGIN
+
+        OPEN result FOR
+
+            SELECT 
+                REMESA.pais AS "Origen Remesa",
+                REMESA.fecha AS "Fecha",
+                TIPOREMESA.nombre AS "TipoRemesa",
+                CLIENTE.nombre || ' ' || CLIENTE.apellido AS "Cliente"
+            FROM REMESA
+            INNER JOIN CLIENTE ON REMESA.id_cliente = CLIENTE.id
+            INNER JOIN TIPOREMESA ON REMESA.id_tipo_remesa = TIPOREMESA.id
+            WHERE CLIENTE.id = idCliente;
+
+        DBMS_SQL.RETURN_RESULT(result);
+    END;
+/
