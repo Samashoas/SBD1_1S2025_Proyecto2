@@ -35,20 +35,20 @@ sp_register_new_type_account('Cuenta Ahorro Empresarial Plus', 'Esta cuenta gene
 
 -- Creación de cuentas
 -- sp_register_new_account(montoApertura, saldoCuenta, Descripcion, FechaApertura, TipoCuenta, idCliente, otrosDetalles)
-sp_register_new_account(1000, 1000, 'Cuenta', SYSDATE, 1, 1, 'Cuenta de ahorro personal de Juan Pérez'); -- id debe ser 1
-sp_register_new_account(2000, 2000, 'Cuenta', SYSDATE, 2, 2, 'Cuenta de ahorro personal de María García'); -- id debe ser 2
-sp_register_new_account(3000, 3000, 'Cuenta', SYSDATE, 3, 3, 'Cuenta de ahorro personal de Carlos López'); -- id debe ser 3
-sp_register_new_account(4000, 4000, 'Cuenta', SYSDATE, 4, 4, 'Cuenta de ahorro personal de Ana Martínez'); -- id debe ser 4
-sp_register_new_account(5000, 5000, 'Cuenta', SYSDATE, 5, 7, 'Cuenta de ahorro personal de Banco'); -- id debe ser 5
-sp_register_new_account(6000, 6000, 'Cuenta', SYSDATE, 1, 5, 'Cuenta de ahorro personal de Laura Hernández'); -- id debe ser 6
-sp_register_new_account(8000, 8000, 'Cuenta', SYSDATE, 3, 1, 'Cuenta de ahorro personal de Juan Pérez'); -- id debe ser 7
-sp_register_new_account(9000, 9000, 'Cuenta', SYSDATE, 4, 2, 'Cuenta de ahorro personal de María García'); -- id debe ser 8
-sp_register_new_account(10000, 10000, 'Cuenta', SYSDATE, 4, 3, 'Cuenta de ahorro personal de Carlos López'); -- id debe ser 9
-sp_register_new_account(11000, 11000, 'Cuenta', SYSDATE, 1, 4, 'Cuenta de ahorro personal de Ana Martínez'); -- id debe ser 10
-sp_register_new_account(12000, 12000, 'Cuenta', SYSDATE, 2, 5, 'Cuenta de ahorro personal de Pedro Ramírez'); -- id debe ser 11
-sp_register_new_account(13000, 13000, 'Cuenta', SYSDATE, 5, 8, 'Cuenta de ahorro personal de EEGSA'); -- id debe ser 12
-sp_register_new_account(14000, 14000, 'Cuenta', SYSDATE, 5, 9, 'Cuenta de ahorro personal de Empagua'); -- id debe ser 13
-sp_register_new_account(15000, 15000, 'Cuenta', SYSDATE, 5, 10, 'Cuenta de ahorro personal de USAC'); -- id debe ser 14
+sp_register_new_account(1000, 1000, 'Cuenta', SYSTIMESTAMP, 1, 1, 'Cuenta de ahorro personal de Juan Pérez'); -- id debe ser 1
+sp_register_new_account(2000, 2000, 'Cuenta', SYSTIMESTAMP, 2, 2, 'Cuenta de ahorro personal de María García'); -- id debe ser 2
+sp_register_new_account(3000, 3000, 'Cuenta', SYSTIMESTAMP, 3, 3, 'Cuenta de ahorro personal de Carlos López'); -- id debe ser 3
+sp_register_new_account(4000, 4000, 'Cuenta', SYSTIMESTAMP, 4, 4, 'Cuenta de ahorro personal de Ana Martínez'); -- id debe ser 4
+sp_register_new_account(5000, 5000, 'Cuenta', SYSTIMESTAMP, 5, 7, 'Cuenta de ahorro personal de Banco'); -- id debe ser 5
+sp_register_new_account(6000, 6000, 'Cuenta', SYSTIMESTAMP, 1, 5, 'Cuenta de ahorro personal de Laura Hernández'); -- id debe ser 6
+sp_register_new_account(8000, 8000, 'Cuenta', SYSTIMESTAMP, 3, 1, 'Cuenta de ahorro personal de Juan Pérez'); -- id debe ser 7
+sp_register_new_account(9000, 9000, 'Cuenta', SYSTIMESTAMP, 4, 2, 'Cuenta de ahorro personal de María García'); -- id debe ser 8
+sp_register_new_account(10000, 10000, 'Cuenta', SYSTIMESTAMP, 4, 3, 'Cuenta de ahorro personal de Carlos López'); -- id debe ser 9
+sp_register_new_account(11000, 11000, 'Cuenta', SYSTIMESTAMP, 1, 4, 'Cuenta de ahorro personal de Ana Martínez'); -- id debe ser 10
+sp_register_new_account(12000, 12000, 'Cuenta', SYSTIMESTAMP, 2, 5, 'Cuenta de ahorro personal de Pedro Ramírez'); -- id debe ser 11
+sp_register_new_account(13000, 13000, 'Cuenta', SYSTIMESTAMP, 5, 8, 'Cuenta de ahorro personal de EEGSA'); -- id debe ser 12
+sp_register_new_account(14000, 14000, 'Cuenta', SYSTIMESTAMP, 5, 9, 'Cuenta de ahorro personal de Empagua'); -- id debe ser 13
+sp_register_new_account(15000, 15000, 'Cuenta', SYSTIMESTAMP, 5, 10, 'Cuenta de ahorro personal de USAC'); -- id debe ser 14
 
 -- Creación de tarjetas
 -- sp_register_new_card(idCliente, idTipoTarjeta, idTipo, NumeroTarjeta, Moneda, MontoLimite, DiaCorte, DiaPago, TasaInteres, FechaExpiracion)

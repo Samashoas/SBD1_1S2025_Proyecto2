@@ -102,6 +102,7 @@ CREATE TABLE CUENTA(
     fecha_apertura TIMESTAMP NOT NULL,
     id_tipo_cuenta NUMBER NOT NULL REFERENCES TIPOCUENTAS(id),
     id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
+    detalles_extra VARCHAR(100),
     creation DATE DEFAULT SYSDATE,
     Data_Update DATE DEFAULT SYSDATE
 );
