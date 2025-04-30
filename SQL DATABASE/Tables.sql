@@ -73,7 +73,9 @@ CREATE TABLE CLIENTE(
     apellido VARCHAR(50) NOT NULL,
     fecha_nacimiento DATE NOT NULL,
     id_tipo_cliente NUMBER NOT NULL REFERENCES TIPOCLIENTE(id),
-    id_info_cliente NUMBER NOT NULL REFERENCES INFOCLIENTE(id)
+    id_info_cliente NUMBER NOT NULL REFERENCES INFOCLIENTE(id),
+    creation DATE DEFAULT SYSDATE,
+    Data_Update DATE DEFAULT SYSDATE
 );
 CREATE SEQUENCE seq_cliente START WITH 1 INCREMENT BY 1;
 --------------------------------------------------------------------------------
