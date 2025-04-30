@@ -86,3 +86,25 @@ BEGIN
     DBMS_SQL.RETURN_RESULT(result);
 END;
 /
+
+CREATE OR REPLACE PROCEDURE sp_awards_by_client (
+    idCliente IN INTEGER
+)
+AS
+    result SYS_REFCURSOR;
+BEGIN
+    OPEN result FOR
+        SELECT 
+            TIPOPREMIO.nombre AS PREMIO,
+            TARJETA.Numero_Tarjeta AS TARJETA,
+            TIPOTARJETA.nombre AS "TIPO TARJETA",
+            CLIENTE.nombre || ' ' || CLIENTE.apellido AS Cliente
+        FROM CLIENTE
+        LEFT JOIN TIPOPREMIO ON CLIENTE.id = TIPOPREMIO.id_cliente
+        LEFT JOIN TARJETA ON CLIENTE.id = TARJETA.id_cliente
+        LEFT JOIN TIPOTARJETA ON TARJETA.id_tipo_tarjeta = TIPOTARJETA.id
+        WHERE CLIENTE.id = idCliente;
+
+    DBMS_SQL.RETURN_RESULT(result);
+END;
+/
