@@ -23,3 +23,33 @@ CREATE OR REPLACE PROCEDURE sp_transactions_by_client (
 
     END;
 /
+
+CREATE OR REPLACE PROCEDURE sp_notifications_by_client (
+    idClienteNotificacion IN INTEGER
+)
+AS
+    result SYS_REFCURSOR;
+BEGIN
+
+    OPEN result FOR
+
+        SELECT 
+            TIPONOTIFICACION.nombre AS TipoNotificacion,
+            NOTIFICACION.nombre AS Notificacion,
+            CLIENTE.nombre || ' ' || CLIENTE.apellido AS Cliente,
+            TIPOCLIENTE.nombre AS TipoCliente,
+            INFOCLIENTE.telefono AS Telefono,
+            INFOCLIENTE.correo AS Correo
+
+        FROM NOTIFICACION
+
+        INNER JOIN TIPONOTIFICACION ON NOTIFICACION.id_tipo_notificacion = TIPONOTIFICACION.id
+        INNER JOIN CLIENTE ON NOTIFICACION.id_cliente = CLIENTE.id
+        INNER JOIN TIPOCLIENTE ON CLIENTE.id_tipo_cliente = TIPOCLIENTE.id
+        INNER JOIN INFOCLIENTE ON CLIENTE.id_info_cliente = INFOCLIENTE.id
+        
+        WHERE NOTIFICACION.id_cliente = idClienteNotificacion;
+
+    DBMS_SQL.RETURN_RESULT(result);
+END;
+/
