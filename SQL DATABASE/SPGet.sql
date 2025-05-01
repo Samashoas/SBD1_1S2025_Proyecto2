@@ -196,3 +196,67 @@ CREATE OR REPLACE PROCEDURE sp_transaction (
             COMMIT;
         END;
 /
+
+
+CREATE SEQUENCE seq_seguro START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE PROCEDURE sp_get_insurance (
+    idTipoSeguro IN INTEGER,
+    montoAsegurado IN DECIMAL,
+    valorSeguro IN DECIMAL,
+    cantidadPagos IN INTEGER,
+    mesesAsegurado IN INTEGER,
+    idClienteR IN INTEGER
+    )   
+    AS
+        atrTempTipoSeguro NUMBER;
+        atrTempCliente NUMBER;
+        atrFechaContratacion DATE := SYSDATE;
+        atrFechaVencimiento DATE;
+        BEGIN
+
+            BEGIN
+                SELECT id INTO atrTempTipoSeguro
+                FROM TIPOSEGURO
+                WHERE id = idTipoSeguro;
+            EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                    RAISE_APPLICATION_ERROR(-20001, 'El tipo de seguro ingresado no existe.');
+            END;
+
+            BEGIN
+                SELECT id INTO atrTempCliente
+                FROM CLIENTE
+                WHERE id = idClienteR;
+            EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                    RAISE_APPLICATION_ERROR(-20002, 'El cliente no existe.');
+            END;
+
+
+            IF montoAsegurado < 0 THEN
+                RAISE_APPLICATION_ERROR(-20003, 'El monto del seguro debe ser mayor o igual a 0.');
+            END IF;
+
+
+            IF valorSeguro < 0 THEN
+                RAISE_APPLICATION_ERROR(-20004, 'El valor del seguro debe ser mayor o igual a 0.');
+            END IF;
+
+            IF cantidadPagos < 0 THEN
+                RAISE_APPLICATION_ERROR(-20005, 'La cantidad de pagos debe ser mayor o igual a 0.');
+            END IF;
+
+            IF mesesAsegurado < 0 THEN
+                RAISE_APPLICATION_ERROR(-20006, 'Los meses deben de ser mayor o iguales a 0.');
+            END IF;
+
+            atrFechaVencimiento := ADD_MONTHS(atrFechaContratacion, mesesAsegurado);
+
+            INSERT INTO SEGURO (id, monto_asegurado, valor_seguro, cantidad_pagos, meses_asegurado, contratacion, fecha_vencimiento, id_tipo_seguro, id_cliente)
+            VALUES (seq_seguro.NEXTVAL, montoAsegurado, valorSeguro, cantidadPagos, mesesAsegurado, atrFechaContratacion, atrFechaVencimiento, idTipoSeguro, idClienteR);
+
+            COMMIT;
+        END;
+/
+

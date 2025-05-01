@@ -95,3 +95,12 @@ BEGIN
 END;
 /
 
+CREATE OR REPLACE TRIGGER tg_fecha_contratacion_seguro
+BEFORE INSERT ON SEGURO
+FOR EACH ROW
+BEGIN
+    IF :NEW.contratacion IS NULL THEN
+        :NEW.contratacion := SYSDATE;
+    END IF;
+END;
+/

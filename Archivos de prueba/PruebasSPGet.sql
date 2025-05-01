@@ -27,6 +27,14 @@ END;
 -- Cada uno de las transacciones se pueden hacer desde una cuenta o tarjeta. Tener en cuenta todas las posibles variantes
 BEGIN 
         sp_transaction(1, SYSDATE, 'Tipo 1', 1, 1, 300, 1, 1);
+
+END;
+/
+
+-- sp_get_insurance(IdTipoSeguro, ValorSeguro, CantidadPagos, MesesAsegurados, idCliente);
+BEGIN 
+
+        sp_get_insurance(1, 10000, 500.00, 12, 24, 1); -- id debe ser 1
 END;
 /
 -- SELECT MAX(id) AS max_id FROM REMESA;
@@ -45,3 +53,4 @@ WHERE table_name = 'REMESA';
 -- SELECT * from REMESA;
 -- SELECT * from PRESTAMO;
 SELECT * from TRANSACCION;
+SELECT * FROM SEGURO;
