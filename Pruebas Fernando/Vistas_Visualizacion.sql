@@ -277,3 +277,50 @@ ORDER BY
 
 -- Para verificar que la vista se creó correctamente
 SELECT * FROM vw_transactions_v2;
+
+-- 9. Vista de transacciones relacionadas con tarjetas
+BEGIN
+   EXECUTE IMMEDIATE 'DROP VIEW vw_card_transactions_v2';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN  -- Si el error no es "vista no existe"
+         RAISE;
+      END IF;
+END;
+/
+
+CREATE OR REPLACE VIEW vw_card_transactions_v2 AS
+SELECT 
+    -- Información de la tarjeta
+    tt.nombre AS tipo_tarjeta,
+    t.tipo AS tipo_tarjeta_general,  -- 'D' para débito, 'C' para crédito
+    t.Numero_Tarjeta,
+    t.moneda,
+    -- Información de la transacción
+    ttr.nombre AS tipo_transaccion,
+    tr.fecha_inicial_transaccion,
+    -- Información del cliente
+    c.nombre AS nombre_cliente,
+    c.apellido AS apellido_cliente,
+    ic.telefono,
+    ic.correo
+FROM 
+    TARJETA t
+    JOIN TIPOTARJETA tt ON t.id_tipo_tarjeta = tt.id
+    JOIN CLIENTE c ON t.id_cliente = c.id
+    JOIN INFOCLIENTE ic ON c.id_info_cliente = ic.id
+    JOIN TRANSACCION tr ON tr.id_cliente = c.id
+    JOIN TIPOTRANSACCION ttr ON tr.id_tipotrans = ttr.id
+WHERE 
+    tr.id_cuenta_origen IN (
+        SELECT cu.id 
+        FROM CUENTA cu 
+        WHERE cu.id_cliente = c.id
+    )
+ORDER BY 
+    tr.fecha_inicial_transaccion DESC, -- Transacciones más recientes primero
+    t.Numero_Tarjeta
+/
+
+-- Para verificar que la vista se creó correctamente
+SELECT * FROM vw_card_transactions_v2;
