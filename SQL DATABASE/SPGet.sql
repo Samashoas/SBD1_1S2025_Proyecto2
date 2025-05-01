@@ -10,35 +10,35 @@ AS
     atrTempCliente NUMBER;
     atrTempCuentaR NUMBER;
     atrTempCuenta NUMBER;
-    
 BEGIN
 
-    SELECT COUNT(1)
-    INTO atrTempTipoRemesa
-    FROM TIPOREMESA
-    WHERE id = idTipoRemesa;
+    BEGIN
+        SELECT id INTO atrTempTipoRemesa
+        FROM TIPOREMESA
+        WHERE id = idTipoRemesa;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE_APPLICATION_ERROR(-20001, 'No se ha encontrado coincidencias para el tipo de remesa.');
+    END;
 
-    IF atrTempTipoRemesa = 0 THEN
-        RAISE_APPLICATION_ERROR(-20001, 'No se ha encontrado coincidencias para el tipo de remesa.');
-    END IF;
 
-    SELECT COUNT(1)
-    INTO atrTempCliente
-    FROM CLIENTE
-    WHERE id = idClienteR;
+    BEGIN
+        SELECT id INTO atrTempCliente
+        FROM CLIENTE
+        WHERE id = idClienteR;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE_APPLICATION_ERROR(-20002, 'No se ha encontrado coincidencias para el cliente introducido.');
+    END;
 
-    IF atrTempCliente = 0 THEN
-        RAISE_APPLICATION_ERROR(-20002, 'No se ha encontrado coincidencias para el cliente introducido.');
-    END IF;
-
-    SELECT COUNT(1)
-    INTO atrTempCuentaR
-    FROM CUENTA
-    WHERE id = idCuentaR AND id_cliente = idClienteR;
-
-    IF atrTempCuentaR = 0 THEN
-        RAISE_APPLICATION_ERROR(-20003, 'Existe un error con la cuenta introducida, no pertenece al cliente o no existe.');
-    END IF;
+    BEGIN
+        SELECT id INTO atrTempCuentaR
+        FROM CUENTA
+        WHERE id = idCuentaR AND id_cliente = idClienteR;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE_APPLICATION_ERROR(-20003, 'Existe un error con la cuenta introducida, no pertenece al cliente o no existe.');
+    END;
 
     SELECT id_tipo_cuenta
     INTO atrTempCuenta

@@ -14,8 +14,10 @@ BEGIN
 END;
 /
 
-SELECT MAX(id) AS max_id FROM REMESA;
+-- SELECT MAX(id) AS max_id FROM REMESA;
 
+
+/*
 DROP SEQUENCE seq_remesa;
 
 CREATE SEQUENCE seq_remesa START WITH 6 INCREMENT BY 1;
@@ -23,5 +25,6 @@ CREATE SEQUENCE seq_remesa START WITH 6 INCREMENT BY 1;
 SELECT constraint_name, column_name
 FROM all_cons_columns
 WHERE table_name = 'REMESA';
-
+*/
+ 
 SELECT * from REMESA;
