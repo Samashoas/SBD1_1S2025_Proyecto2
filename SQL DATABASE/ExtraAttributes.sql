@@ -74,3 +74,24 @@ CREATE OR REPLACE TRIGGER tg_atr_fecha_mod_transaccion
       
     END;
 /
+
+CREATE OR REPLACE TRIGGER tg_fecha_contratacion_prestamo
+BEFORE INSERT ON PRESTAMO
+FOR EACH ROW
+BEGIN
+    IF :NEW.contratacion IS NULL THEN
+        :NEW.contratacion := SYSDATE;
+    END IF;
+END;
+/
+
+CREATE OR REPLACE TRIGGER tg_fecha_vencimiento_prestamo
+BEFORE INSERT ON PRESTAMO
+FOR EACH ROW
+BEGIN
+    IF :NEW.fecha_vencimiento IS NULL THEN
+        :NEW.fecha_vencimiento := ADD_MONTHS(SYSDATE, :NEW.meses);
+    END IF;
+END;
+/
+

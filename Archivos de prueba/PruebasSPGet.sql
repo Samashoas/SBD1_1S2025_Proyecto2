@@ -1,16 +1,20 @@
 /*
 INSERT INTO REMESA (id, pais, fecha, id_cliente, id_tipo_remesa, id_tipo_cuenta)
 VALUES (1, 'México', TO_DATE('2025-04-27', 'YYYY-MM-DD'), 1, 1, 1);
-INSERT INTO REMESA (id, pais, fecha, id_cliente, id_tipo_remesa, id_tipo_cuenta)
-VALUES (2, 'Estados Unidos', TO_DATE('2025-04-27', 'YYYY-MM-DD'), 2, 2, 2);
-INSERT INTO REMESA (id, pais, fecha, id_cliente, id_tipo_remesa, id_tipo_cuenta)
-VALUES (3, 'España', TO_DATE('2025-04-27', 'YYYY-MM-DD'), 3, 2, 3);
+INSERT INTO PRESTAMO (id, monto_prestamo, tasa_interes, meses, contratacion, fecha_vencimiento, id_cliente)
+VALUES (1, 10000.00, 0.15, 12, TO_DATE('2025-01-01', 'YYYY-MM-DD'), TO_DATE('2025-12-31', 'YYYY-MM-DD'), 1);
 */
 
 BEGIN
 
     sp_comming_money(1, TO_DATE('2025-04-27', 'YYYY-MM-DD'), 'Italia', 1, 1);
 
+
+END;
+/
+
+BEGIN 
+        sp_get_loan(10000, 15, 3, 1);
 END;
 /
 
@@ -28,3 +32,4 @@ WHERE table_name = 'REMESA';
 */
  
 SELECT * from REMESA;
+SELECT * from PRESTAMO;
