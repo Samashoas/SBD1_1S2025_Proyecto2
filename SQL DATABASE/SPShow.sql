@@ -120,9 +120,10 @@ AS
         OPEN result FOR
 
             SELECT 
+                TIPOREMESA.nombre AS "Empresa",
                 REMESA.pais AS "Origen Remesa",
                 REMESA.fecha AS "Fecha",
-                TIPOREMESA.nombre AS "TipoRemesa",
+               
                 CLIENTE.nombre || ' ' || CLIENTE.apellido AS "Cliente"
             FROM REMESA
             INNER JOIN CLIENTE ON REMESA.id_cliente = CLIENTE.id
