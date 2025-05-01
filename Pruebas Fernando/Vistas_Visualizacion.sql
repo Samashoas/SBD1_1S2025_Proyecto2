@@ -324,3 +324,57 @@ ORDER BY
 
 -- Para verificar que la vista se creó correctamente
 SELECT * FROM vw_card_transactions_v2;
+
+-- 10. Vista de productos/servicios adquiridos por clientes
+BEGIN
+   EXECUTE IMMEDIATE 'DROP VIEW vw_products_v2';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN  -- Si el error no es "vista no existe"
+         RAISE;
+      END IF;
+END;
+/
+
+CREATE OR REPLACE VIEW vw_products_v2 AS
+SELECT 
+    -- Información del servicio
+    ts.nombre AS tipo_servicio,
+    s.nombre AS nombre_servicio,
+    s.monto AS monto_servicio,
+    ps.fecha_contratacion,
+    -- Información de la cuenta/tarjeta asociada
+    CASE 
+        WHEN cu.id IS NOT NULL THEN tc.nombre
+        WHEN t.id IS NOT NULL THEN tt.nombre
+        ELSE NULL
+    END AS tipo_producto,
+    CASE 
+        WHEN cu.id IS NOT NULL THEN cu.numero_cuenta
+        WHEN t.id IS NOT NULL THEN t.Numero_Tarjeta
+        ELSE NULL
+    END AS numero_producto,
+    -- Información del cliente
+    c.nombre AS nombre_cliente,
+    c.apellido AS apellido_cliente,
+    ic.telefono,
+    ic.correo
+FROM 
+    PRODUCTO_SERVICIO ps
+    JOIN SERVICIO s ON ps.id_servicio = s.id
+    JOIN TIPOSERVICIO ts ON s.id_tipo_servicio = ts.id
+    JOIN CLIENTE c ON ps.id_cliente = c.id
+    JOIN INFOCLIENTE ic ON c.id_info_cliente = ic.id
+    LEFT JOIN CUENTA cu ON c.id = cu.id_cliente
+    LEFT JOIN TIPOCUENTAS tc ON cu.id_tipo_cuenta = tc.id
+    LEFT JOIN TARJETA t ON c.id = t.id_cliente
+    LEFT JOIN TIPOTARJETA tt ON t.id_tipo_tarjeta = tt.id
+ORDER BY 
+    c.apellido,
+    c.nombre,
+    ts.nombre,
+    ps.fecha_contratacion DESC
+/
+
+-- Para verificar que la vista se creó correctamente
+SELECT * FROM vw_products_v2;
