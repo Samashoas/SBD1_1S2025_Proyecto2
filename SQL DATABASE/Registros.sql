@@ -163,6 +163,18 @@ END;
 /
 
 
+/*
+CREATE TABLE SEGURO(
+    id NUMBER PRIMARY KEY,
+    monto_asegurado DECIMAL NOT NULL,
+    valor_seguro DECIMAL NOT NULL,
+    cantidad_pagos NUMBER NOT NULL,
+    meses_asegurado INTEGER NOT NULL,
+    contratacion DATE NOT NULL,
+    fecha_vencimiento DATE NOT NULL
+);
+*/
+-- sp_get_insurance(IdTipoSeguro, ValorSeguro, CantidadPagos, MesesAsegurados, idCliente);
 
 
 /*
