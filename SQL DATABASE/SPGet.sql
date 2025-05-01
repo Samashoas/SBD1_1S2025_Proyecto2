@@ -97,3 +97,102 @@ BEGIN
     COMMIT;
 END;
 /
+
+CREATE SEQUENCE seq_transaccion START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE PROCEDURE sp_transaction (
+    idTipoTransaccion IN INTEGER,
+    fechaTransaccion IN DATE, 
+    otrosDetalles IN VARCHAR, 
+    idClienteR IN INTEGER,
+    idCuentaTarjetaR IN INTEGER,
+    valorTransaccion IN NUMBER,
+    idCuentaOrigenR IN INTEGER,
+    idCuentaDestinoR IN INTEGER
+    )
+    AS
+        atrTempTipoTransaccion NUMBER;
+        atrTempCliente NUMBER;
+        atrTempSaldoCuentaOrigen NUMBER;
+        atrTempCuentaTarjeta NUMBER;
+        atrTempCuentaDestino NUMBER;
+        BEGIN
+
+            BEGIN
+                SELECT id INTO atrTempTipoTransaccion
+                FROM TIPOTRANSACCION
+                WHERE id = idTipoTransaccion;
+            EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                    RAISE_APPLICATION_ERROR(-20001, 'El tipo de transaccion ingresada no existe');
+            END;
+
+            BEGIN
+                SELECT id INTO atrTempCliente
+                FROM CLIENTE
+                WHERE id = idClienteR;
+            EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                    RAISE_APPLICATION_ERROR(-20002, 'El cliente no existe');
+            END;
+
+            BEGIN
+                SELECT COUNT(*)
+                INTO atrTempCuentaTarjeta
+                FROM CUENTA
+                WHERE id = idCuentaTarjetaR AND id_cliente = idClienteR;
+
+                IF atrTempCuentaTarjeta = 0 THEN
+                    RAISE_APPLICATION_ERROR(-20003, 'La cuenta o tarjeta son del cliente o no existen.');
+                END IF;
+            END;
+
+            BEGIN
+
+                SELECT COUNT(*)
+                INTO atrTempCuentaTarjeta
+                FROM CUENTA
+                WHERE id = idCuentaOrigenR AND id_cliente = idClienteR;
+
+                IF atrTempCuentaTarjeta = 0 THEN
+                    RAISE_APPLICATION_ERROR(-20004, 'La cuenta origen no pertenece al cliente o no existe.');
+                END IF;
+
+                SELECT saldo INTO atrTempSaldoCuentaOrigen
+                FROM CUENTA
+                WHERE id = idCuentaOrigenR;
+
+            EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                    RAISE_APPLICATION_ERROR(-20004, 'La cuenta origen no pertenece al cliente o no existe.');
+            END;
+
+            BEGIN
+                SELECT COUNT(*)
+                INTO atrTempCuentaDestino
+                FROM CUENTA
+                WHERE id = idCuentaDestinoR;
+
+                IF atrTempCuentaDestino = 0 THEN
+                    RAISE_APPLICATION_ERROR(-20005, 'La cuenta destino no existe.');
+                END IF;
+            END;
+
+            IF atrTempSaldoCuentaOrigen < valorTransaccion THEN
+                RAISE_APPLICATION_ERROR(-20006, 'Saldo insuficiente para realizar la transaccion.');
+            END IF;
+
+            INSERT INTO TRANSACCION (id, id_tipotrans, id_cliente, id_cuenta_origen, id_cuenta_destino, fecha_inicial_transaccion)
+            VALUES (seq_transaccion.NEXTVAL, idTipoTransaccion, idClienteR, idCuentaOrigenR, idCuentaDestinoR, fechaTransaccion);
+
+            UPDATE CUENTA
+            SET saldo = saldo - valorTransaccion
+            WHERE id = idCuentaOrigenR;
+
+            UPDATE CUENTA
+            SET saldo = saldo + valorTransaccion
+            WHERE id = idCuentaDestinoR;
+
+            COMMIT;
+        END;
+/
