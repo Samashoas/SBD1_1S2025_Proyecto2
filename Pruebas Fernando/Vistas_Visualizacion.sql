@@ -197,3 +197,42 @@ ORDER BY
 
 -- Para verificar que la vista se creó correctamente
 SELECT * FROM vw_active_credit_cards_v2;
+
+
+-- 7. Vista de tarjetas de débito vigentes
+BEGIN
+   EXECUTE IMMEDIATE 'DROP VIEW vw_active_debit_cards_v2';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN  -- Si el error no es "vista no existe"
+         RAISE;
+      END IF;
+END;
+/
+
+CREATE OR REPLACE VIEW vw_active_debit_cards_v2 AS
+SELECT 
+    -- Información de la tarjeta
+    tt.nombre AS tipo_tarjeta,
+    t.Numero_Tarjeta,
+    t.moneda,
+    t.fecha_expedicion,
+    -- Información del cliente
+    c.nombre AS nombre_cliente,
+    c.apellido AS apellido_cliente,
+    ic.telefono,
+    ic.correo
+FROM 
+    TARJETA t
+    JOIN TIPOTARJETA tt ON t.id_tipo_tarjeta = tt.id
+    JOIN CLIENTE c ON t.id_cliente = c.id
+    JOIN INFOCLIENTE ic ON c.id_info_cliente = ic.id
+WHERE 
+    t.tipo = 'D'  -- Solo tarjetas de débito
+    AND t.fecha_expedicion <= SYSDATE  -- Tarjetas ya expedidas
+ORDER BY 
+    tt.nombre, c.apellido, c.nombre
+/
+
+-- Para verificar que la vista se creó correctamente
+SELECT * FROM vw_active_debit_cards_v2;
