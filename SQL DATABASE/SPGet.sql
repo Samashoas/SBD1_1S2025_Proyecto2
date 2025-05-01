@@ -260,3 +260,70 @@ CREATE OR REPLACE PROCEDURE sp_get_insurance (
         END;
 /
 
+CREATE SEQUENCE seq_producto_servicio START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE PROCEDURE sp_get_product_service (
+
+    idTipoProducto IN INTEGER, 
+    tipo IN INTEGER, 
+    pagadoCon IN INTEGER, 
+    descripcion IN VARCHAR, 
+    monto IN NUMBER,
+    idCliente IN INTEGER
+    )
+    AS
+        atrTempTipoServicio NUMBER;
+        atrTempServicio NUMBER;
+        atrTempSaldo NUMBER;
+        atrFechaContratacion DATE := SYSDATE;
+    BEGIN
+
+        BEGIN
+            SELECT id INTO atrTempTipoServicio
+            FROM TIPOSERVICIO
+            WHERE id = idTipoProducto;
+        EXCEPTION
+            WHEN NO_DATA_FOUND THEN
+                RAISE_APPLICATION_ERROR(-20001, 'El tipo de servicio no es valido.');
+        END;
+
+
+        INSERT INTO SERVICIO (id, nombre, monto, id_tipo_servicio)
+        VALUES (seq_producto_servicio.NEXTVAL, descripcion, monto, atrTempTipoServicio)
+        RETURNING id INTO atrTempServicio;
+
+
+        IF tipo = 1 AND monto IS NULL THEN
+            RAISE_APPLICATION_ERROR(-20003, 'Falta el monto para el servicio o producto.');
+        END IF;
+
+        IF monto < 0 THEN
+            RAISE_APPLICATION_ERROR(-20004, 'Solamente se permiten montos mayores o igual a 0.');
+        END IF;
+
+
+        BEGIN
+            SELECT saldo INTO atrTempSaldo
+            FROM CUENTA
+            WHERE id = pagadoCon;
+
+            IF atrTempSaldo < monto THEN
+                RAISE_APPLICATION_ERROR(-20005, 'El sado no es suficiente para adquirir el producto');
+            END IF;
+        EXCEPTION
+            WHEN NO_DATA_FOUND THEN
+                RAISE_APPLICATION_ERROR(-20006, 'La cuenta ingresada no existe o no pertenece al cliente.');
+        END;
+
+
+        INSERT INTO PRODUCTO_SERVICIO (id, id_cliente, id_servicio)
+        VALUES (seq_producto_servicio.NEXTVAL, idCliente, atrTempServicio);
+
+
+        UPDATE CUENTA
+        SET saldo = saldo - monto
+        WHERE id = pagadoCon;
+
+        COMMIT;
+    END;
+/
