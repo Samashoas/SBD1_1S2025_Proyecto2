@@ -85,7 +85,6 @@ BEGIN
             RAISE;
 END;
 /
-
 /*
 CREATE TABLE CUENTA(
     id NUMBER PRIMARY KEY,
@@ -119,10 +118,59 @@ BEGIN
     COMMIT;
 END;
 /
+
+/*
+CREATE TABLE TARJETA(
+    id NUMBER PRIMARY KEY,
+    tipo CHAR NOT NULL,
+    Numero_Tarjeta NUMBER(16,0) NOT NULL,
+    moneda CHAR NOT NULL,
+    monto_limite DECIMAL NOT NULL,
+    Dia_corte NUMBER,
+    Dia_pago NUMBER,
+    Tasa_interes DECIMAL NOT NULL,
+    fecha_expedicion TIMESTAMP NOT NULL,
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
+    id_tipo_tarjeta NUMBER NOT NULL REFERENCES TIPOTARJETA(id)
+);
+*/
+
+-- sp_register_new_card(idCliente, idTipoTarjeta, Tipo, NumeroTarjeta, Moneda, MontoLimite, DiaCorte, DiaPago, TasaInteres, FechaExpiracion)
+CREATE OR REPLACE PROCEDURE sp_register_new_card(
+    p_id_cliente IN NUMBER,
+    p_id_tipo_tarjeta IN NUMBER,
+    p_tipo IN CHAR,
+    p_numero_tarjeta IN NUMBER,
+    p_moneda IN CHAR,
+    p_monto_limite IN DECIMAL,
+    p_dia_corte IN NUMBER,
+    p_dia_pago IN NUMBER,
+    p_tasa_interes IN DECIMAL,
+    p_fecha_expedicion IN VARCHAR
+) AS
+    v_fecha DATE;
+BEGIN
+     IF LENGTH(TO_CHAR(p_numero_tarjeta)) != 16 THEN
+        RAISE_APPLICATION_ERROR(-20001, 'El número de tarjeta debe tener 16 dígitos');
+    END IF;
+
+    v_fecha := TO_DATE(p_fecha_expedicion, 'DD-MM-YYYY');
+    -- sp_register_new_card(1, 1, 'C', 1234567823458765, 'Q', 10000, 17, 12, 5, '24-04-2029'); -- id debe ser 1
+    INSERT INTO TARJETA (id, id_cliente, id_tipo_tarjeta, tipo, Numero_Tarjeta, moneda, monto_limite, Dia_corte, Dia_pago, Tasa_interes, fecha_expedicion)
+    VALUES (seq_tarjeta.NEXTVAL,  p_id_cliente, p_id_tipo_tarjeta, p_tipo, p_numero_tarjeta, p_moneda, p_monto_limite, p_dia_corte, p_dia_pago, p_tasa_interes, v_fecha);
+    COMMIT;
+END;
+/
+
+
+
+
 /*
 DROP PROCEDURE sp_register_new_type_client;
 DROP PROCEDURE sp_register_new_type_account;
 DROP PROCEDURE sp_register_new_client;
+DROP PROCEDURE sp_register_new_account;
+DROP PROCEDURE sp_register_new_card;
 */
 
-DROP PROCEDURE sp_register_new_account;
+

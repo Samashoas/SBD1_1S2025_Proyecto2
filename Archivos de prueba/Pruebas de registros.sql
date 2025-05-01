@@ -49,6 +49,21 @@ sp_register_new_account(15000, 15000, 'Cuenta', SYSTIMESTAMP, 5, 10, 'Cuenta de 
 END;
 /
 
-/*
+BEGIN
+sp_register_new_card(2, 1, 'C', 1234567823458766, 'Q', 20000, 19, 14, 4, '15-08-2028'); -- id debe ser 2
+sp_register_new_card(3, 1, 'C', 1234567823458767, 'Q', 30000, 21, 16, 3, '10-12-2027'); -- id debe ser 3
+sp_register_new_card(4, 2, 'C', 1234567823458768, 'Q', 40000, 23, 18, 2, '05-03-2026'); -- id debe ser 4
+sp_register_new_card(8, 2, 'C', 1234567823458769, 'Q', 50000, 25, 20, 1, '20-07-2025'); -- id debe ser 5
+sp_register_new_card(6, 3, 'C', 1234567823458770, 'Q', 60000, 27, 22, 5, '30-11-2024'); -- id debe ser 6
+sp_register_new_card(1, 3, 'D', 1234567823458771, 'Q', 70000, 29, 24, 0, '01-01-2023'); -- id debe ser 7 y relacionar con una cuenta
+sp_register_new_card(2, 1, 'D', 1234567823458772, 'Q', 80000, 31, 26, 0, '24-04-2022'); -- id debe ser 8 y relacionar con una cuenta
+sp_register_new_card(3, 1, 'D', 1234567823458773, 'Q', 90000, 2, 28, 0, '15-08-2021'); -- id debe ser 9 y relacionar con una cuenta
+sp_register_new_card(4, 2, 'D', 1234567823458774, 'Q', 100000, 4, 30, 0, '10-12-2020'); -- id debe ser 10 y relacionar con una cuenta
+sp_register_new_card(8, 2, 'D', 1234567823458775, 'Q', 110000, 6, 1, 0, '05-03-2019'); -- id debe ser 11 y relacionar con una cuenta
+sp_register_new_card(6, 3, 'D', 1234567823458776, 'Q', 120000, 8, 3, 0, '20-07-2018'); -- id debe ser 12 y relacionar con una cuenta
+END;
+/
 
+/*
+sp_register_new_card(1, 1, 'C', 1234567823458765, 'Q', 10000, 17, 12, 5, '24-04-2029'); -- id debe ser 1
 */
