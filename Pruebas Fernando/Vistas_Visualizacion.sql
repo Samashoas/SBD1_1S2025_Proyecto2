@@ -236,3 +236,44 @@ ORDER BY
 
 -- Para verificar que la vista se creó correctamente
 SELECT * FROM vw_active_debit_cards_v2;
+
+-- 8. Vista de transacciones (depósitos/débitos)
+BEGIN
+   EXECUTE IMMEDIATE 'DROP VIEW vw_transactions_v2';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN  -- Si el error no es "vista no existe"
+         RAISE;
+      END IF;
+END;
+/
+
+CREATE OR REPLACE VIEW vw_transactions_v2 AS
+SELECT 
+    -- Información de la cuenta
+    tc.nombre AS tipo_cuenta,
+    c.numero_cuenta,
+    c.Saldo AS saldo_actual,
+    -- Información de la transacción
+    tt.nombre AS tipo_transaccion,
+    t.fecha_inicial_transaccion,
+    -- Información del cliente
+    cl.nombre AS nombre_cliente,
+    cl.apellido AS apellido_cliente,
+    ic.telefono,
+    ic.correo
+FROM 
+    TRANSACCION t
+    JOIN TIPOTRANSACCION tt ON t.id_tipotrans = tt.id
+    JOIN CUENTA c ON t.id_cuenta_origen = c.id
+    JOIN TIPOCUENTAS tc ON c.id_tipo_cuenta = tc.id
+    JOIN CLIENTE cl ON t.id_cliente = cl.id
+    JOIN INFOCLIENTE ic ON cl.id_info_cliente = ic.id
+WHERE 
+    tt.nombre IN ('Depósito', 'Retiro')  -- Solo depósitos y retiros
+ORDER BY 
+    t.fecha_inicial_transaccion DESC  -- Transacciones más recientes primero
+/
+
+-- Para verificar que la vista se creó correctamente
+SELECT * FROM vw_transactions_v2;
