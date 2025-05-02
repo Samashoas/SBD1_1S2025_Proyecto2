@@ -1,5 +1,0 @@
-Pasos para testeo de procedimientos almacenados
-1. DropTable si hay cambios en tablas
-2. Ejecutar Table.sql
-3. Ejecutar ExtraAttributes.sql para los trigger de los attributos faltantes para el correcto funcionamiento de los sp
-4. Ejecutar SPSHow o SPGet, utilizar el archivo de PruebasSP dependidendo de cuales se desean probar

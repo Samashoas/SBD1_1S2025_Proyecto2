@@ -67,7 +67,7 @@ CREATE OR REPLACE PROCEDURE sp_get_product_service (
 /
 
 
-CREATE SEQUENCE seq_seguro START WITH 1 INCREMENT BY 1;
+--CREATE SEQUENCE seq_seguro START WITH 1 INCREMENT BY 1;
 
 CREATE OR REPLACE PROCEDURE sp_get_insurance (
     idTipoSeguro IN INTEGER,

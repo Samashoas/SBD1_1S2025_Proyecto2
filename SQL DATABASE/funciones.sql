@@ -350,3 +350,27 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20003, 'Error inesperado: ' || SQLERRM);
 END fn_max_value_products;
 /
+
+-- Habilitar salida en consola
+SET SERVEROUTPUT ON;
+
+-- 1. fn_current_money_by_client
+EXEC DBMS_OUTPUT.PUT_LINE('Saldo de la cuenta: $' || fn_current_money_by_client(1, 1));
+
+-- 2. fn_amount_servicies_by_client
+EXEC DBMS_OUTPUT.PUT_LINE('Cantidad de servicios: ' || fn_amount_servicies_by_client(1, TO_DATE('01/01/2023', 'DD/MM/YYYY'), TO_DATE('31/12/2023', 'DD/MM/YYYY')));
+
+-- 3. fn_avg_servicies
+EXEC DBMS_OUTPUT.PUT_LINE('Promedio de servicios: ' || fn_avg_servicies(TO_DATE('01/01/2023', 'DD/MM/YYYY'), TO_DATE('31/12/2023', 'DD/MM/YYYY')));
+
+-- 4. fn_total_amount_servicies_by_client
+EXEC DBMS_OUTPUT.PUT_LINE('Total de servicios: $' || fn_total_amount_servicies_by_client(1, TO_DATE('01/01/2023', 'DD/MM/YYYY'), TO_DATE('31/12/2023', 'DD/MM/YYYY')));
+
+-- 5. fn_next_payment
+EXEC DBMS_OUTPUT.PUT_LINE('Pago mensual: $' || fn_next_payment(1, 1));
+
+-- 6. fn_max_amount_products
+EXEC DBMS_OUTPUT.PUT_LINE('Mayor cantidad de servicios: ' || fn_max_amount_products(TO_DATE('01/01/2023', 'DD/MM/YYYY'), TO_DATE('31/12/2023', 'DD/MM/YYYY')));
+
+-- 7. fn_max_value_products
+EXEC DBMS_OUTPUT.PUT_LINE('Mayor monto de servicios: $' || fn_max_value_products(TO_DATE('01/01/2023', 'DD/MM/YYYY'), TO_DATE('31/12/2023', 'DD/MM/YYYY')));
