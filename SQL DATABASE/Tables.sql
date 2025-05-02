@@ -144,6 +144,8 @@ CREATE TABLE SEGURO(
     meses_asegurado INTEGER NOT NULL,
     contratacion DATE NOT NULL,
     fecha_vencimiento DATE NOT NULL,
+    id_tipo_seguro NUMBER NOT NULL REFERENCES TIPOSEGURO(id),
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
     creation DATE DEFAULT SYSDATE,
     Data_Update DATE DEFAULT SYSDATE
 );

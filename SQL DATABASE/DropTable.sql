@@ -6,7 +6,7 @@ SE ELIMINAN TODAS LAS TABLAS DEL ESQUEMA ACTUAL
 BEGIN
    FOR cur_rec IN (SELECT table_name FROM user_tables) LOOP
       BEGIN
-         EXECUTE IMMEDIATE 'DROP TABLE ' || cur_rec.table_name || ' CASCADE CONSTRAINTS';
+         EXECUTE IMMEDIATE 'DROP TABLE ' || cur_rec.table_name || ' CASCADE CONSTRAINTS PURGE';
       EXCEPTION
          WHEN OTHERS THEN NULL;
       END;
