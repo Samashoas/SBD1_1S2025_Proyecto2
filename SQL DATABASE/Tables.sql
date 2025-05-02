@@ -2,14 +2,20 @@
 CREATE TABLE TIPOCLIENTE(
     id NUMBER PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
-    descripcion VARCHAR2(500) NOT NULL
+    descripcion VARCHAR2(500) NOT NULL,
+    creation DATE DEFAULT SYSDATE,
+    Data_Update DATE DEFAULT SYSDATE
 );
+CREATE SEQUENCE seq_tipo_cliente START WITH 1 INCREMENT BY 1;
 
 CREATE TABLE TIPOCUENTAS(
     id NUMBER PRIMARY KEY,
     nombre VARCHAR(35) NOT NULL,
-    descripcion VARCHAR2(105) NOT NULL 
+    descripcion VARCHAR2(105) NOT NULL,
+    creation DATE DEFAULT SYSDATE,
+    Data_Update DATE DEFAULT SYSDATE
 );
+CREATE SEQUENCE seq_tipo_cuenta START WITH 1 INCREMENT BY 1;
 
 CREATE TABLE TIPOTARJETA(
     id NUMBER PRIMARY KEY,
@@ -49,6 +55,7 @@ CREATE TABLE INFOCLIENTE(
     usuario varchar(50) NOT NULL,
     pass varchar(100) NOT NULL
 );
+CREATE SEQUENCE seq_info_cliente START WITH 1 INCREMENT BY 1;
 
 CREATE TABLE ACCESOS(
     id NUMBER PRIMARY KEY,
@@ -70,9 +77,11 @@ CREATE TABLE CLIENTE(
     apellido VARCHAR(50) NOT NULL,
     fecha_nacimiento DATE NOT NULL,
     id_tipo_cliente NUMBER NOT NULL REFERENCES TIPOCLIENTE(id),
-    id_info_cliente NUMBER NOT NULL REFERENCES INFOCLIENTE(id)
+    id_info_cliente NUMBER NOT NULL REFERENCES INFOCLIENTE(id),
+    creation DATE DEFAULT SYSDATE,
+    Data_Update DATE DEFAULT SYSDATE
 );
-
+CREATE SEQUENCE seq_cliente START WITH 1 INCREMENT BY 1;
 --------------------------------------------------------------------------------
 CREATE TABLE TIPOPREMIO(
     id NUMBER PRIMARY KEY,
@@ -90,13 +99,18 @@ CREATE TABLE NOTIFICACION(
 
 CREATE TABLE CUENTA(
     id NUMBER PRIMARY KEY,
-    numero_cuenta NUMBER(16,0) NOT NULL,
+    numero_cuenta NUMBER(16,0) NOT NULL, --Generar random no repetible
     MontoApertura DECIMAL NOT NULL,
     Saldo DECIMAL NOT NULL,
+    descripcion VARCHAR(100) NOT NULL,
     fecha_apertura TIMESTAMP NOT NULL,
     id_tipo_cuenta NUMBER NOT NULL REFERENCES TIPOCUENTAS(id),
-    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id)
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
+    detalles_extra VARCHAR(100),
+    creation DATE DEFAULT SYSDATE,
+    Data_Update DATE DEFAULT SYSDATE
 );
+CREATE SEQUENCE seq_cuenta START WITH 1 INCREMENT BY 1;
 
 CREATE TABLE TARJETA(
     id NUMBER PRIMARY KEY,
@@ -107,10 +121,14 @@ CREATE TABLE TARJETA(
     Dia_corte NUMBER,
     Dia_pago NUMBER,
     Tasa_interes DECIMAL NOT NULL,
-    fecha_expedicion TIMESTAMP NOT NULL,
+    fecha_expedicion DATE NOT NULL,
     id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
-    id_tipo_tarjeta NUMBER NOT NULL REFERENCES TIPOTARJETA(id)
+    id_tipo_tarjeta NUMBER NOT NULL REFERENCES TIPOTARJETA(id),
+    creation_date DATE DEFAULT SYSDATE,
+    Data_Update DATE DEFAULT SYSDATE
 );
+CREATE SEQUENCE seq_tarjeta START WITH 1 INCREMENT BY 1;
+
 
 CREATE TABLE PRODUCTO_SERVICIO(
     id NUMBER PRIMARY KEY,
@@ -125,8 +143,13 @@ CREATE TABLE SEGURO(
     cantidad_pagos NUMBER NOT NULL,
     meses_asegurado INTEGER NOT NULL,
     contratacion DATE NOT NULL,
-    fecha_vencimiento DATE NOT NULL
+    fecha_vencimiento DATE NOT NULL,
+    id_tipo_seguro NUMBER NOT NULL REFERENCES TIPOSEGURO(id),
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
+    creation DATE DEFAULT SYSDATE,
+    Data_Update DATE DEFAULT SYSDATE
 );
+CREATE SEQUENCE seq_seguro START WITH 1 INCREMENT BY 1;
 
 CREATE TABLE TRANSACCION(
     id NUMBER PRIMARY KEY,
