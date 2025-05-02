@@ -13,20 +13,32 @@ INSERT INTO TIPONOTIFICACION (id, nombre) VALUES (1, 'SMS');
 INSERT INTO TIPONOTIFICACION (id, nombre) VALUES (2, 'Email');
 INSERT INTO TIPONOTIFICACION (id, nombre) VALUES (3, 'Push');
 
---TIPO DE SERVICIO
-INSERT INTO TIPOSERVICIO (id, nombre) VALUES (1, 'Préstamo');
-INSERT INTO TIPOSERVICIO (id, nombre) VALUES (2, 'Seguro');
-INSERT INTO TIPOSERVICIO (id, nombre) VALUES (3, 'Inversión');
+--TIPO DE SERVICIO (REVISAR)
+INSERT INTO TIPOSERVICIO (id, nombre) VALUES (1, 'Energía E');
+INSERT INTO TIPOSERVICIO (id, nombre) VALUES (2, 'Agua P');
+INSERT INTO TIPOSERVICIO (id, nombre) VALUES (3, 'Matrícula');
+INSERT INTO TIPOSERVICIO (id, nombre) VALUES (4, 'Vacaciones');
+INSERT INTO TIPOSERVICIO (id, nombre) VALUES (5, 'Seguro');
+INSERT INTO TIPOSERVICIO (id, nombre) VALUES (6, 'P. tarjeta');
+INSERT INTO TIPOSERVICIO (id, nombre) VALUES (7, 'Préstamo');
+INSERT INTO TIPOSERVICIO (id, nombre) VALUES (8, 'T. débito');
+INSERT INTO TIPOSERVICIO (id, nombre) VALUES (9, 'T.crédito');
+INSERT INTO TIPOSERVICIO (id, nombre) VALUES (10, 'Chequera');
+
+
 
 --TIPO SEGURO
-INSERT INTO TIPOSEGURO (id, nombre) VALUES (1, 'Seguro de Vida');
-INSERT INTO TIPOSEGURO (id, nombre) VALUES (2, 'Seguro de Vivienda');
-INSERT INTO TIPOSEGURO (id, nombre) VALUES (3, 'Seguro de Vehículo');
+INSERT INTO TIPOSEGURO (id, nombre) VALUES (1, 'Seguro Basico');
+INSERT INTO TIPOSEGURO (id, nombre) VALUES (2, 'Seguro Regular');
+INSERT INTO TIPOSEGURO (id, nombre) VALUES (3, 'Seguro Premium');
+INSERT INTO TIPOSEGURO (id, nombre) VALUES (4, 'Seguro Platino');
 
---TIPO TRANSacccion (es clave)
-INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (1, 'Depósito');
-INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (2, 'Retiro');
-INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (3, 'Transferencia');
+--TIPO TRANSacccion (es clave) (REVISAR)
+INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (1, 'Débito');
+INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (2, 'Crédito');
+INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (3, 'Consumo con tarjeta');
+INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (4, 'Remesa');
+INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (5, 'Pago de servicio/producto');
 
 --TIPO DE PREMIO
 /*

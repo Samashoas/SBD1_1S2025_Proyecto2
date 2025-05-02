@@ -6,13 +6,13 @@ CREATE OR REPLACE PROCEDURE sp_get_product_service (
     tipo IN INTEGER, 
     pagadoCon IN INTEGER, 
     descripcion IN VARCHAR, 
-    monto IN NUMBER,
-    idCliente IN INTEGER
+    monto IN DECIMAL
     )
     AS
-        atrTempTipoServicio NUMBER;
-        atrTempServicio NUMBER;
-        atrTempSaldo NUMBER;
+        atrTempTipoServicio INTEGER;
+        atrTempServicio INTEGER;
+        atrTempSaldo INTEGER;
+        atrTempCliente INTEGER; 
         atrFechaContratacion DATE := SYSDATE;
     BEGIN
 
@@ -22,7 +22,7 @@ CREATE OR REPLACE PROCEDURE sp_get_product_service (
             WHERE id = idTipoProducto;
         EXCEPTION
             WHEN NO_DATA_FOUND THEN
-                RAISE_APPLICATION_ERROR(-20001, 'El tipo de servicio no es valido.');
+                RAISE_APPLICATION_ERROR(-20001, 'El tipo de servicio no es válido.');
         END;
 
 
@@ -41,26 +41,27 @@ CREATE OR REPLACE PROCEDURE sp_get_product_service (
 
 
         BEGIN
-            SELECT saldo INTO atrTempSaldo
+            SELECT saldo, id_cliente INTO atrTempSaldo, atrTempCliente
             FROM CUENTA
             WHERE id = pagadoCon;
 
             IF atrTempSaldo < monto THEN
-                RAISE_APPLICATION_ERROR(-20005, 'El sado no es suficiente para adquirir el producto');
+                RAISE_APPLICATION_ERROR(-20005, 'El saldo no es suficiente para adquirir el producto.');
             END IF;
         EXCEPTION
             WHEN NO_DATA_FOUND THEN
-                RAISE_APPLICATION_ERROR(-20006, 'La cuenta ingresada no existe o no pertenece al cliente.');
+                RAISE_APPLICATION_ERROR(-20006, 'La cuenta ingresada no existe.');
         END;
 
-
         INSERT INTO PRODUCTO_SERVICIO (id, id_cliente, id_servicio)
-        VALUES (seq_producto_servicio.NEXTVAL, idCliente, atrTempServicio);
+        VALUES (seq_producto_servicio.NEXTVAL, atrTempCliente, atrTempServicio);
 
 
+        /*
         UPDATE CUENTA
         SET saldo = saldo - monto
         WHERE id = pagadoCon;
+        */
 
         COMMIT;
     END;
