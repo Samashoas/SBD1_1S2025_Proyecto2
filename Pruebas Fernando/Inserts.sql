@@ -98,13 +98,13 @@ VALUES (2, 'Aviso de pago', 2, 2);
 INSERT INTO NOTIFICACION (id, nombre, id_cliente, id_tipo_notificacion)
 VALUES (3, 'Notificación de transferencia', 3, 3);
 
--- Inserts para PRODUCTO_SERVICIO
-INSERT INTO PRODUCTO_SERVICIO (id, id_cliente, id_servicio)
-VALUES (1, 1, 1);
-INSERT INTO PRODUCTO_SERVICIO (id, id_cliente, id_servicio)
-VALUES (2, 2, 2);
-INSERT INTO PRODUCTO_SERVICIO (id, id_cliente, id_servicio)
-VALUES (3, 3, 3);
+-- Inserts para PRODUCTO_SERVICIO (modificado para incluir fecha_contratacion)
+INSERT INTO PRODUCTO_SERVICIO (id, id_cliente, id_servicio, fecha_contratacion)
+VALUES (1, 1, 1, SYSDATE);
+INSERT INTO PRODUCTO_SERVICIO (id, id_cliente, id_servicio, fecha_contratacion)
+VALUES (2, 2, 2, SYSDATE);
+INSERT INTO PRODUCTO_SERVICIO (id, id_cliente, id_servicio, fecha_contratacion)
+VALUES (3, 3, 3, SYSDATE);
 
 -- Inserts para SEGURO
 INSERT INTO SEGURO (id, monto_asegurado, valor_seguro, cantidad_pagos, meses_asegurado, contratacion, fecha_vencimiento, id_tipo_seguro, id_cliente)
@@ -114,13 +114,13 @@ VALUES (2, 250000.00, 1200.00, 24, 24, TO_DATE('2025-01-01', 'YYYY-MM-DD'), TO_D
 INSERT INTO SEGURO (id, monto_asegurado, valor_seguro, cantidad_pagos, meses_asegurado, contratacion, fecha_vencimiento, id_tipo_seguro, id_cliente)
 VALUES (3, 500000.00, 2500.00, 36, 36, TO_DATE('2025-01-01', 'YYYY-MM-DD'), TO_DATE('2027-12-31', 'YYYY-MM-DD'), 3, 3);
 
--- Inserts para TRANSACCION
-INSERT INTO TRANSACCION (id, id_tipotrans, id_cliente, id_cuenta_origen, id_cuenta_destino)
-VALUES (1, 1, 1, 1, 2);
-INSERT INTO TRANSACCION (id, id_tipotrans, id_cliente, id_cuenta_origen, id_cuenta_destino)
-VALUES (2, 2, 2, 2, 3);
-INSERT INTO TRANSACCION (id, id_tipotrans, id_cliente, id_cuenta_origen, id_cuenta_destino)
-VALUES (3, 3, 3, 3, 1);
+-- Inserts para TRANSACCION (modificado para incluir fecha_inicial_transaccion)
+INSERT INTO TRANSACCION (id, id_tipotrans, id_cliente, id_cuenta_origen, id_cuenta_destino, fecha_inicial_transaccion)
+VALUES (1, 1, 1, 1, 2, SYSDATE);
+INSERT INTO TRANSACCION (id, id_tipotrans, id_cliente, id_cuenta_origen, id_cuenta_destino, fecha_inicial_transaccion)
+VALUES (2, 2, 2, 2, 3, SYSDATE);
+INSERT INTO TRANSACCION (id, id_tipotrans, id_cliente, id_cuenta_origen, id_cuenta_destino, fecha_inicial_transaccion)
+VALUES (3, 3, 3, 3, 1, SYSDATE);
 
 -- Inserts para PRESTAMO
 INSERT INTO PRESTAMO (id, monto_prestamo, tasa_interes, meses, contratacion, fecha_vencimiento, id_cliente)
