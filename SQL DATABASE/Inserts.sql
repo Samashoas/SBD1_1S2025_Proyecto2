@@ -28,10 +28,10 @@ INSERT INTO TIPOSERVICIO (id, nombre) VALUES (10, 'Chequera');
 
 
 --TIPO SEGURO
-INSERT INTO TIPOSEGURO (id, nombre) VALUES (1, 'Seguro Basico');
-INSERT INTO TIPOSEGURO (id, nombre) VALUES (2, 'Seguro Regular');
-INSERT INTO TIPOSEGURO (id, nombre) VALUES (3, 'Seguro Premium');
-INSERT INTO TIPOSEGURO (id, nombre) VALUES (4, 'Seguro Platino');
+INSERT INTO TIPOSEGURO (id, nombre) VALUES (1, 'Seguro de vida');
+INSERT INTO TIPOSEGURO (id, nombre) VALUES (2, 'Seguro de automovil');
+INSERT INTO TIPOSEGURO (id, nombre) VALUES (3, 'Seguro medico');
+INSERT INTO TIPOSEGURO (id, nombre) VALUES (4, 'Tarjeta de moto');
 
 --TIPO TRANSacccion (es clave) (REVISAR)
 INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (1, 'Débito');
@@ -40,7 +40,7 @@ INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (3, 'Consumo con tarjeta');
 INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (4, 'Remesa');
 INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (5, 'Pago de servicio/producto');
 
-
+/*
 -- Inserts para NOTIFICACION
 INSERT INTO NOTIFICACION (id, nombre, id_cliente, id_tipo_notificacion)
 VALUES (1, 'Deposito', 1, 1);
@@ -67,6 +67,6 @@ INSERT INTO TIPOPREMIO (id, nombre, descripcion, id_cliente)
 VALUES (2, 'Millas', 'Acumulación de millas por compras', 2);
 INSERT INTO TIPOPREMIO (id, nombre, descripcion, id_cliente)
 VALUES (3, 'Puntos', 'Puntos canjeables por productos', 3);
-
+*/
 
 COMMIT;

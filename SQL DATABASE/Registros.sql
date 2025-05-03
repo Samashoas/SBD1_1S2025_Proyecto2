@@ -14,6 +14,10 @@ BEGIN
     INSERT INTO TIPOCLIENTE (id, nombre, descripcion)
     VALUES (seq_tipo_cliente.NEXTVAL, p_nombre, p_descripcion);
     COMMIT;
+    EXCEPTION
+        WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE;
 END;
 /
 /*
@@ -32,6 +36,10 @@ BEGIN
     INSERT INTO TIPOCUENTAS (id, nombre, descripcion)
     VALUES (seq_tipo_cuenta.NEXTVAL, p_nombre, p_descripcion);
     COMMIT;
+    EXCEPTION
+        WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE;
 END;
 /
 
@@ -112,10 +120,18 @@ CREATE OR REPLACE PROCEDURE sp_register_new_account(
     P_detalles_extra IN VARCHAR2 DEFAULT NULL
 )AS
 BEGIN
+    IF p_monto_apertura < 0 OR p_saldo < 0 THEN
+        RAISE_APPLICATION_ERROR(-20002, 'El monto de apertura y el saldo no pueden ser negativos');
+    END IF;
+
     -- sp_register_new_account(1000, 1000, 'Cuenta', SYSTIMESTAMP, 1, 1, 'Cuenta de ahorro personal de Juan Pérez'); -- id debe ser 1
     INSERT INTO CUENTA (id, MontoApertura, Saldo, descripcion, fecha_apertura, id_tipo_cuenta, id_cliente, detalles_extra)
     VALUES (seq_cuenta.NEXTVAL, p_monto_apertura, p_saldo,  p_descripcion, p_fecha_apertura, p_id_tipo_cuenta, p_id_cliente, p_detalles_extra);
     COMMIT;
+    EXCEPTION
+        WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE;
 END;
 /
 
@@ -159,6 +175,10 @@ BEGIN
     INSERT INTO TARJETA (id, id_cliente, id_tipo_tarjeta, tipo, Numero_Tarjeta, moneda, monto_limite, Dia_corte, Dia_pago, Tasa_interes, fecha_expedicion)
     VALUES (seq_tarjeta.NEXTVAL,  p_id_cliente, p_id_tipo_tarjeta, p_tipo, p_numero_tarjeta, p_moneda, p_monto_limite, p_dia_corte, p_dia_pago, p_tasa_interes, v_fecha);
     COMMIT;
+    EXCEPTION
+        WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE;
 END;
 /
 
