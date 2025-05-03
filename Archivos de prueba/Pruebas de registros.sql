@@ -67,3 +67,76 @@ END;
 /*
 sp_register_new_card(1, 1, 'C', 1234567823458765, 'Q', 10000, 17, 12, 5, '24-04-2029'); -- id debe ser 1
 */
+
+BEGIN
+-- Creación de Seguros
+sp_get_insurance(1, 50000, 10000, 12, 24, 1); -- id debe ser 1
+sp_get_insurance(2, 70000, 20000, 24, 36, 2); -- id debe ser 2
+sp_get_insurance(3, 190000, 30000, 36, 48, 3); -- id debe ser 3
+sp_get_insurance(4, 290000, 40000, 48, 60, 4); -- id debe ser 4
+sp_get_insurance(1, 1900000, 50000, 60, 72, 5); -- id debe ser 5
+sp_get_insurance(2, 190000, 60000, 72, 84, 6); -- id debe ser 6
+sp_get_insurance(3, 290000, 70000, 84, 96, 1); -- id debe ser 7
+sp_get_insurance(4, 350000, 80000, 96, 108, 2); -- id debe ser 8
+sp_get_insurance(1, 450000, 90000, 108, 120, 3); -- id debe ser 9
+sp_get_insurance(2, 780000, 100000, 120, 132, 4); -- id debe ser 10
+sp_get_insurance(3, 790000, 110000, 132, 144, 5); -- id debe ser 11
+END;
+/
+
+BEGIN
+-- Creación de Prestamos
+sp_get_loan(10000, 5, 12, 1); -- id debe ser 1
+sp_get_loan(20000, 4, 24, 2); -- id debe ser 2
+sp_get_loan(30000, 3, 36, 3); -- id debe ser 3
+sp_get_loan(40000, 2, 48, 4); -- id debe ser 4
+sp_get_loan(50000, 1, 60, 5); -- id debe ser 5
+sp_get_loan(60000, 5, 72, 6); -- id debe ser 6
+sp_get_loan(70000, 4, 84, 1); -- id debe ser 7
+sp_get_loan(80000, 3, 96, 2); -- id debe ser 8
+sp_get_loan(90000, 2, 108, 3); -- id debe ser 9
+sp_get_loan(100000, 1, 120, 4); -- id debe ser 10
+sp_get_loan(110000, 5, 132, 5); -- id debe ser 11
+END;
+/
+
+
+BEGIN 
+-- Creación de Transacciones y Servicio
+
+-- PAGOS DESDE CUENTA
+sp_get_product_service(1, 1, 1 , 'Pago de energía Eléctrica (EEGSA)', 500);
+sp_transaction(5, SYSDATE, 'Tipo 1', 1, 1, 1000, 1, 12);
+
+sp_get_product_service(2, 1, 2, 'Pago de agua potable (Empagua)', 2000);
+sp_transaction(5, SYSDATE, 'Tipo 2', 2, 2, 2000, 2, 13);
+
+sp_get_product_service(3, 1, 3, 'Pago de Matrícula USAC', 3000);
+sp_transaction(5, SYSDATE, 'Tipo 3', 3, 3, 3000, 3, 14);
+
+--sp_get_product_service(5, 1, 'Pago de seguro', 1234567823458765, 833.33);
+--sp_transaction(5, SYSDATE, 'Tipo 5', 1, 1234567823458765, 833.33);
+
+END;
+/
+
+
+BEGIN 
+sp_get_product_service(6, 1, 6, 'Pago tarjeta', 0);
+sp_transaction(5, SYSDATE, 'Tipo 6', 2, 1234567823458766, 0, 2, 5);
+
+--sp_get_product_service(7, 1, 'Pago Préstamo', 1234567823458766, 833.33);
+--sp_transaction(5, SYSDATE, 'Tipo 7', 3, 1234567823458766, 833.33);
+
+
+sp_get_product_service(8, 2, 9, 'Servicio de tarjeta de débito', 0);
+sp_transaction(5, SYSDATE, 'Tipo 8', 3, 9, 0, 9, 5);
+sp_get_product_service(9, 2, 4, 'Servicio de tarjeta de crédito', 0);
+sp_transaction(5, SYSDATE, 'Tipo 9', 4, 4, 0, 4, 5);
+sp_get_product_service(10, 2, 2, 'Servicio de chequera', 0);
+sp_transaction(5, SYSDATE, 'Tipo 10', 2, 2, 0, 2, 5);
+END;
+/
+
+SELECT * from PRODUCTO_SERVICIO;
+SELECT * from SERVICIO;
