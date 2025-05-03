@@ -40,7 +40,7 @@ INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (3, 'Consumo con tarjeta');
 INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (4, 'Remesa');
 INSERT INTO TIPOTRANSACCION (id, nombre) VALUES (5, 'Pago de servicio/producto');
 
-/*
+
 -- Inserts para NOTIFICACION
 INSERT INTO NOTIFICACION (id, nombre, id_cliente, id_tipo_notificacion)
 VALUES (1, 'Deposito', 1, 1);
@@ -57,6 +57,8 @@ VALUES (2, 'Estados Unidos', TO_DATE('2025-05-2', 'YYYY-MM-DD'), 2, 2, 2);
 INSERT INTO REMESA (id, pais, fecha, id_cliente, id_tipo_remesa, id_tipo_cuenta)
 VALUES (3, 'España', TO_DATE('2025-05-2', 'YYYY-MM-DD'), 3, 2, 3);
 
+
+
 --TIPO DE PREMIO
 
 INSERT INTO TIPOPREMIO (id, nombre, descripcion, id_cliente)
@@ -65,6 +67,6 @@ INSERT INTO TIPOPREMIO (id, nombre, descripcion, id_cliente)
 VALUES (2, 'Millas', 'Acumulación de millas por compras', 2);
 INSERT INTO TIPOPREMIO (id, nombre, descripcion, id_cliente)
 VALUES (3, 'Puntos', 'Puntos canjeables por productos', 3);
-*/
+
 
 COMMIT;
