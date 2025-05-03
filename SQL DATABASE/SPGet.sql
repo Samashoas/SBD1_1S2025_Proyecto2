@@ -1,4 +1,5 @@
 CREATE SEQUENCE seq_producto_servicio START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE seq_servicio START WITH 1 INCREMENT BY 1;
 
 CREATE OR REPLACE PROCEDURE sp_get_product_service (
 
@@ -11,7 +12,7 @@ CREATE OR REPLACE PROCEDURE sp_get_product_service (
     AS
         atrTempTipoServicio INTEGER;
         atrTempServicio INTEGER;
-        atrTempSaldo INTEGER;
+        atrTempSaldo DECIMAL;
         atrTempCliente INTEGER; 
         atrFechaContratacion DATE := SYSDATE;
     BEGIN
@@ -27,7 +28,7 @@ CREATE OR REPLACE PROCEDURE sp_get_product_service (
 
 
         INSERT INTO SERVICIO (id, nombre, monto, id_tipo_servicio)
-        VALUES (seq_producto_servicio.NEXTVAL, descripcion, monto, atrTempTipoServicio)
+        VALUES (seq_servicio.NEXTVAL, descripcion, monto, atrTempTipoServicio)
         RETURNING id INTO atrTempServicio;
 
 

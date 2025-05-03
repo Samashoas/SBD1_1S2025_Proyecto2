@@ -68,16 +68,6 @@ END;
 sp_register_new_card(1, 1, 'C', 1234567823458765, 'Q', 10000, 17, 12, 5, '24-04-2029'); -- id debe ser 1
 */
 
---pendiene insertar tipo de premio
-INSERT INTO TIPOPREMIO (id, nombre, descripcion, id_cliente)
-VALUES (1, 'Cashback', 'Devolución del 2% en compras', 1);
-INSERT INTO TIPOPREMIO (id, nombre, descripcion, id_cliente)
-VALUES (2, 'Millas', 'Acumulación de millas por compras', 2);
-INSERT INTO TIPOPREMIO (id, nombre, descripcion, id_cliente)
-VALUES (3, 'Puntos', 'Puntos canjeables por productos', 3);
-COMMIT;
-
-
 BEGIN
 -- Creación de Seguros
 sp_get_insurance(1, 50000, 10000, 12, 24, 1); -- id debe ser 1
@@ -138,7 +128,7 @@ sp_transaction(5, SYSDATE, 'Tipo 6', 2, 1234567823458766, 0, 2, 5);
 --sp_get_product_service(7, 1, 'Pago Préstamo', 1234567823458766, 833.33);
 --sp_transaction(5, SYSDATE, 'Tipo 7', 3, 1234567823458766, 833.33);
 
--- SERVICIOS TIPO 8,9 y 10 deben sumar a la cuenta del banco
+
 sp_get_product_service(8, 2, 9, 'Servicio de tarjeta de débito', 0);
 sp_transaction(5, SYSDATE, 'Tipo 8', 3, 9, 0, 9, 5);
 sp_get_product_service(9, 2, 4, 'Servicio de tarjeta de crédito', 0);
@@ -147,3 +137,6 @@ sp_get_product_service(10, 2, 2, 'Servicio de chequera', 0);
 sp_transaction(5, SYSDATE, 'Tipo 10', 2, 2, 0, 2, 5);
 END;
 /
+
+SELECT * from PRODUCTO_SERVICIO;
+SELECT * from SERVICIO;
