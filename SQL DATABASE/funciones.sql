@@ -351,6 +351,7 @@ EXCEPTION
 END fn_max_value_products;
 /
 
+/*
 -- Habilitar salida en consola
 SET SERVEROUTPUT ON;
 
@@ -374,3 +375,4 @@ EXEC DBMS_OUTPUT.PUT_LINE('Mayor cantidad de servicios: ' || fn_max_amount_produ
 
 -- 7. fn_max_value_products
 EXEC DBMS_OUTPUT.PUT_LINE('Mayor monto de servicios: $' || fn_max_value_products(TO_DATE('01/01/2023', 'DD/MM/YYYY'), TO_DATE('31/12/2023', 'DD/MM/YYYY')));
+*/
