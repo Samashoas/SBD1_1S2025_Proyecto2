@@ -6,13 +6,13 @@ CREATE OR REPLACE PROCEDURE sp_get_product_service (
     tipo IN INTEGER, 
     pagadoCon IN INTEGER, 
     descripcion IN VARCHAR, 
-    monto IN NUMBER,
-    idCliente IN INTEGER
+    monto IN DECIMAL
     )
     AS
-        atrTempTipoServicio NUMBER;
-        atrTempServicio NUMBER;
-        atrTempSaldo NUMBER;
+        atrTempTipoServicio INTEGER;
+        atrTempServicio INTEGER;
+        atrTempSaldo INTEGER;
+        atrTempCliente INTEGER; 
         atrFechaContratacion DATE := SYSDATE;
     BEGIN
 
@@ -22,7 +22,7 @@ CREATE OR REPLACE PROCEDURE sp_get_product_service (
             WHERE id = idTipoProducto;
         EXCEPTION
             WHEN NO_DATA_FOUND THEN
-                RAISE_APPLICATION_ERROR(-20001, 'El tipo de servicio no es valido.');
+                RAISE_APPLICATION_ERROR(-20001, 'El tipo de servicio no es válido.');
         END;
 
 
@@ -41,26 +41,27 @@ CREATE OR REPLACE PROCEDURE sp_get_product_service (
 
 
         BEGIN
-            SELECT saldo INTO atrTempSaldo
+            SELECT saldo, id_cliente INTO atrTempSaldo, atrTempCliente
             FROM CUENTA
             WHERE id = pagadoCon;
 
             IF atrTempSaldo < monto THEN
-                RAISE_APPLICATION_ERROR(-20005, 'El sado no es suficiente para adquirir el producto');
+                RAISE_APPLICATION_ERROR(-20005, 'El saldo no es suficiente para adquirir el producto.');
             END IF;
         EXCEPTION
             WHEN NO_DATA_FOUND THEN
-                RAISE_APPLICATION_ERROR(-20006, 'La cuenta ingresada no existe o no pertenece al cliente.');
+                RAISE_APPLICATION_ERROR(-20006, 'La cuenta ingresada no existe.');
         END;
 
-
         INSERT INTO PRODUCTO_SERVICIO (id, id_cliente, id_servicio)
-        VALUES (seq_producto_servicio.NEXTVAL, idCliente, atrTempServicio);
+        VALUES (seq_producto_servicio.NEXTVAL, atrTempCliente, atrTempServicio);
 
 
+        /*
         UPDATE CUENTA
         SET saldo = saldo - monto
         WHERE id = pagadoCon;
+        */
 
         COMMIT;
     END;
@@ -136,17 +137,17 @@ CREATE OR REPLACE PROCEDURE sp_transaction (
     fechaTransaccion IN DATE, 
     otrosDetalles IN VARCHAR, 
     idClienteR IN INTEGER,
-    idCuentaTarjetaR IN INTEGER,
-    valorTransaccion IN NUMBER,
+    idCuentaNumTarjeta IN INTEGER,
+    valorTransaccion IN DECIMAL,
     idCuentaOrigenR IN INTEGER,
     idCuentaDestinoR IN INTEGER
     )
     AS
-        atrTempTipoTransaccion NUMBER;
-        atrTempCliente NUMBER;
-        atrTempSaldoCuentaOrigen NUMBER;
-        atrTempCuentaTarjeta NUMBER;
-        atrTempCuentaDestino NUMBER;
+        atrTempTipoTransaccion INTEGER;
+        atrTempCliente INTEGER;
+        atrTempSaldoCuentaOrigen DECIMAL;
+        atrTempCuentaTarjeta INTEGER;
+        atrTempCuentaDestino INTEGER;
         BEGIN
 
             BEGIN
@@ -168,13 +169,26 @@ CREATE OR REPLACE PROCEDURE sp_transaction (
             END;
 
             BEGIN
-                SELECT COUNT(*)
-                INTO atrTempCuentaTarjeta
-                FROM CUENTA
-                WHERE id = idCuentaTarjetaR AND id_cliente = idClienteR;
+                IF idCuentaNumTarjeta > 15 THEN
 
-                IF atrTempCuentaTarjeta = 0 THEN
-                    RAISE_APPLICATION_ERROR(-20003, 'La cuenta o tarjeta son del cliente o no existen.');
+                    SELECT COUNT(*)
+                    INTO atrTempCuentaTarjeta
+                    FROM TARJETA
+                    WHERE Numero_Tarjeta = idCuentaNumTarjeta AND id_cliente = idClienteR;
+
+                    IF atrTempCuentaTarjeta = 0 THEN
+                        RAISE_APPLICATION_ERROR(-20007, 'La tarjeta no pertenece al cliente o no existe.');
+                    END IF;
+                ELSE
+                   
+                    SELECT COUNT(*)
+                    INTO atrTempCuentaTarjeta
+                    FROM CUENTA
+                    WHERE id = idCuentaNumTarjeta AND id_cliente = idClienteR;
+
+                    IF atrTempCuentaTarjeta = 0 THEN
+                        RAISE_APPLICATION_ERROR(-20003, 'La cuenta no pertenece al cliente o no existe.');
+                    END IF;
                 END IF;
             END;
 
