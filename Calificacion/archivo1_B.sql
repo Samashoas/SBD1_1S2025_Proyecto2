@@ -1,3 +1,24 @@
+-------------
+BEGIN
+    --REGISTRAR NUEVO TIPO DE CLIENTE
+sp_register_new_type_client('Individual Nacional', 'Este tipo de cliente es una persona individual de nacionalidad guatemalteca.'); -- id debe ser 1
+sp_register_new_type_client('Individual Extranjero', 'Este tipo de cliente es una persona individual de nacionalidad extranjera.'); -- id debe ser 2
+sp_register_new_type_client('Empresa Pyme', 'Este tipo de cliente es una empresa de tipo pequeña o mediana.'); -- -- id debe ser 3
+sp_register_new_type_client('Empresa S.C', 'Este tipo de cliente corresponde a las empresa grandes que tienen una sociedad colectiva.'); -- -- id debe ser 4
+END;
+/
+
+
+BEGIN 
+sp_register_new_type_account('Cuenta Ahorro', 'Esta cuenta genera un interés anual de dos porciento'); -- id debe ser 1
+sp_register_new_type_account('Cuenta Ahorro Plus', 'Esta cuenta genera un interés anual del tres punto cinco porciento'); -- id debe ser 2
+sp_register_new_type_account('Cuenta Monetaria', 'Diseñada para recibir depósitos de sueldo y realizar pagos.'); -- id debe ser 3
+sp_register_new_type_account('Cuenta Ahorro Empresarial', 'Esta cuenta genera un interés anual de tres porciento'); -- id debe ser 4
+sp_register_new_type_account('Cuenta Ahorro Empresarial Plus', 'Esta cuenta genera un interés anual de cinco porciento'); -- id debe ser 5
+END;
+/
+--------------
+
 -- Creación Tipos de Clientes
 BEGIN
 sp_register_new_type_client('Cliente tipo banco', 'Tipo de cliente para el banco');  -- id debe ser 5
@@ -22,6 +43,7 @@ sp_register_new_client('Empresa', 'EEGSA', '+50217171818', 'eggsa@eggsa.com', '0
 sp_register_new_client('Empresa', 'EMPAGUA', '+50234353435', 'empagua@empagua.com', '01-01-1990', 'empagua', 'segurita1234', 4); -- id debe ser 12
 sp_register_new_client('Empresa', 'USAC', '+50278796465', 'usac@usac.com', '01-01-1995', 'usac', 'segurita1234', 6); -- id debe ser 13
 sp_register_new_client('Empresa', 'BANCO', '+50258762349', 'banco@banco.com', '01-01-1950', 'banco', 'segurita1234', 5); -- id debe ser 14
+
 END;
 /
 -- Creación Tipos de Cuentas
@@ -85,7 +107,7 @@ SELECT fn_current_money_by_client(13,23) FROM DUAL; ---> 750000
 
 BEGIN
 -- Tarjetas
-sp_register_new_card(1, 2, 'C', 1234987654327894, 'Q', 5000, 17, 10, 6, '01-08-2029'); -- id debe ser 1
+sp_register_new_card(1, 2, 'C', 1234987654327894, 'Q', 5000, 17, 10, 6, '03-05-2024'); -- id debe ser 1
 sp_register_new_card(2, 2, 'C', 1234987654327895, 'Q', 6000, 17, 10, 6, '01-09-2029'); -- id debe ser 2
 sp_register_new_card(3, 2, 'C', 1234987654327896, 'Q', 7000, 17, 10, 6, '01-10-2029'); -- id debe ser 3
 sp_register_new_card(4, 2, 'C', 1234987654327897, 'Q', 8000, 17, 10, 6, '01-11-2029'); -- id debe ser 4
@@ -95,8 +117,10 @@ sp_register_new_card(7, 3, 'C', 1234987654327890, 'Q', 11000, 17, 10, 6, '01-02-
 sp_register_new_card(8, 3, 'C', 1234987654327891, 'Q', 12000, 17, 10, 6, '01-03-2030'); -- id debe ser 8
 sp_register_new_card(9, 3, 'C', 1234987654327892, 'Q', 13000, 17, 10, 6, '01-04-2030'); -- id debe ser 9
 sp_register_new_card(10, 3, 'C', 1234987654327893, 'Q', 14000, 17, 10, 6, '01-05-2030'); -- id debe ser 10
+
 END;
 /
+
 
 BEGIN
 sp_register_new_card(1, 1, 'D', 4567321894564321, 'Q', 0, 1, 1, 0, '01-06-2030'); -- id debe ser 11
@@ -114,11 +138,17 @@ END;
 
 
 -- Servicios
-EXEC sp_get_product_service(1, 1, 1, 'Pago de energía Eléctrica (EEGSA)', 250);
-EXEC sp_transaction(5, SYSDATE, 'Pago de servicio/producto', 1, 1, 1050, 1, 21);
+--EXEC sp_get_product_service(1, 1, 1, 'Pago de energía Eléctrica (EEGSA)', 1050);
+--EXEC sp_transaction(5, SYSDATE, 'Pago de servicio/producto', 1, 1, 1050, 1, 21);
 
-EXEC sp_get_product_service(1, 1, 2, 'Pago de energía Eléctrica (EEGSA)', 850);
-EXEC sp_transaction(5, SYSDATE, 'Pago de servicio/producto', 2, 2, 850, 2, 21);
+--EXEC sp_get_product_service(1, 1, 2, 'Pago de energía Eléctrica (EEGSA)', 850);
+--EXEC sp_transaction(5, SYSDATE, 'Pago de servicio/producto', 2, 2, 850, 2, 21);
+
+EXEC sp_get_product_service(1, 1, 1, 'Pago de energía Eléctrica (EEGSA)', 250);
+EXEC sp_transaction(5, SYSDATE, 'Pago de servicio/producto', 1, 1, 250, 1, 21);
+
+EXEC sp_get_product_service(1, 1, 2, 'Pago de energía Eléctrica (EEGSA)', 500);
+EXEC sp_transaction(5, SYSDATE, 'Pago de servicio/producto', 2, 2, 500, 2, 21);
 
 EXEC sp_get_product_service(2, 1, 3, 'Pago de agua potable (Empagua)', 360);
 EXEC sp_transaction(5, SYSDATE, 'Pago de servicio/producto', 3, 3, 360, 3, 22);
@@ -158,8 +188,8 @@ sp_get_insurance(1, 100000, 3500, 12, 24, 1); -- id debe ser 1
 sp_get_insurance(2, 200000, 5000, 12, 24, 2); -- id debe ser 2
 sp_get_insurance(3, 300000, 7000, 12, 24, 3); -- id debe ser 3
 sp_get_insurance(4, 400000, 9000, 12, 24, 4); -- id debe ser 4
---sp_get_insurance(5, 500000, 11000, 12, 24, 5); -- id debe ser 5
---sp_get_insurance(6, 600000, 13000, 12, 24, 6); -- id debe ser 6
+sp_get_insurance(4, 500000, 11000, 12, 24, 5); -- id debe ser 5
+sp_get_insurance(4, 600000, 13000, 12, 24, 6); -- id debe ser 6
 END;
 /
 
@@ -185,6 +215,26 @@ sp_transactions_by_client(2, '01-01-1950', '08-08-2025'); -- id debe ser 1
 sp_transactions_by_client(3, '01-01-1950', '08-08-2025'); -- id debe ser 1
 END;
 /
+
+-- Inserts para NOTIFICACION
+INSERT INTO NOTIFICACION (id, nombre, id_cliente, id_tipo_notificacion)
+VALUES (1, 'Deposito', 1, 1);
+INSERT INTO NOTIFICACION (id, nombre, id_cliente, id_tipo_notificacion)
+VALUES (2, 'Aviso de pago', 2, 2);
+INSERT INTO NOTIFICACION (id, nombre, id_cliente, id_tipo_notificacion)
+VALUES (3, 'Aviso de transferencia', 3, 3);
+
+
+--TIPO DE PREMIO
+
+INSERT INTO TIPOPREMIO (id, nombre, descripcion, id_cliente)
+VALUES (1, 'Cashback', 'Devolución del 2% en compras', 1);
+INSERT INTO TIPOPREMIO (id, nombre, descripcion, id_cliente)
+VALUES (2, 'Millas', 'Acumulación de millas por compras', 2);
+INSERT INTO TIPOPREMIO (id, nombre, descripcion, id_cliente)
+VALUES (3, 'Puntos', 'Puntos canjeables por productos', 3);
+
+COMMIT;
 
 BEGIN
 sp_notifications_by_client(1);
@@ -235,8 +285,9 @@ SELECT fn_next_payment(2,2) FROM DUAL;
 SELECT fn_next_payment(3,3) FROM DUAL;
 SELECT fn_next_payment(4,4) FROM DUAL;
 
-SELECT fn_max_amount_products() FROM DUAL;
-SELECT fn_max_value_products() FROM DUAL;
+SELECT fn_max_amount_products(TO_DATE('01/01/2023', 'DD/MM/YYYY'), TO_DATE('31/12/2025', 'DD/MM/YYYY')) FROM DUAL;
+SELECT fn_max_value_products(TO_DATE('01/01/2023', 'DD/MM/YYYY'), TO_DATE('31/12/2025', 'DD/MM/YYYY')) FROM DUAL;
+SELECT fn_max_amount_products(TO_DATE('01/01/2023', 'DD/MM/YYYY'), TO_DATE('31/12/2025', 'DD/MM/YYYY')) FROM DUAL;
 
 -- VISTAS
 

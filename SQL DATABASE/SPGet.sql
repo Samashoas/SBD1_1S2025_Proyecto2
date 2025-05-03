@@ -65,6 +65,10 @@ CREATE OR REPLACE PROCEDURE sp_get_product_service (
         */
 
         COMMIT;
+        EXCEPTION
+            WHEN OTHERS THEN
+                ROLLBACK;
+                RAISE;
     END;
 /
 
@@ -128,7 +132,11 @@ CREATE OR REPLACE PROCEDURE sp_get_insurance (
             VALUES (seq_seguro.NEXTVAL, montoAsegurado, valorSeguro, cantidadPagos, mesesAsegurado, atrFechaContratacion, atrFechaVencimiento, idTipoSeguro, idClienteR);
 
             COMMIT;
-        END;
+            EXCEPTION
+                WHEN OTHERS THEN
+                    ROLLBACK;
+                    RAISE;
+            END;
 /
 
 CREATE SEQUENCE seq_transaccion START WITH 1 INCREMENT BY 1;
@@ -240,6 +248,10 @@ CREATE OR REPLACE PROCEDURE sp_transaction (
             WHERE id = idCuentaDestinoR;
 
             COMMIT;
+            EXCEPTION
+                WHEN OTHERS THEN
+                    ROLLBACK;
+                    RAISE;
         END;
 /
 
@@ -284,6 +296,10 @@ BEGIN
     VALUES (seq_prestamo.NEXTVAL, montoPrestamo, tasaInteres, meses, atrFechaContratacion, atrFechaVencimiento, idClienteR);
 
     COMMIT;
+        EXCEPTION
+            WHEN OTHERS THEN
+                ROLLBACK;
+                RAISE;
 END;
 /
 
@@ -340,5 +356,9 @@ BEGIN
     VALUES (seq_remesa.NEXTVAL, paisRemesa, fechaRemesa, idClienteR, idTipoRemesa, atrTempCuenta);
 
     COMMIT;
+        EXCEPTION
+            WHEN OTHERS THEN
+                ROLLBACK;
+                RAISE;
 END;
 /
