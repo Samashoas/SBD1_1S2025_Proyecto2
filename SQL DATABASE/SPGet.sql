@@ -137,17 +137,17 @@ CREATE OR REPLACE PROCEDURE sp_transaction (
     fechaTransaccion IN DATE, 
     otrosDetalles IN VARCHAR, 
     idClienteR IN INTEGER,
-    idCuentaTarjetaR IN INTEGER,
-    valorTransaccion IN NUMBER,
+    idCuentaNumTarjeta IN INTEGER,
+    valorTransaccion IN DECIMAL,
     idCuentaOrigenR IN INTEGER,
     idCuentaDestinoR IN INTEGER
     )
     AS
-        atrTempTipoTransaccion NUMBER;
-        atrTempCliente NUMBER;
-        atrTempSaldoCuentaOrigen NUMBER;
-        atrTempCuentaTarjeta NUMBER;
-        atrTempCuentaDestino NUMBER;
+        atrTempTipoTransaccion INTEGER;
+        atrTempCliente INTEGER;
+        atrTempSaldoCuentaOrigen DECIMAL;
+        atrTempCuentaTarjeta INTEGER;
+        atrTempCuentaDestino INTEGER;
         BEGIN
 
             BEGIN
@@ -169,13 +169,26 @@ CREATE OR REPLACE PROCEDURE sp_transaction (
             END;
 
             BEGIN
-                SELECT COUNT(*)
-                INTO atrTempCuentaTarjeta
-                FROM CUENTA
-                WHERE id = idCuentaTarjetaR AND id_cliente = idClienteR;
+                IF idCuentaNumTarjeta > 15 THEN
 
-                IF atrTempCuentaTarjeta = 0 THEN
-                    RAISE_APPLICATION_ERROR(-20003, 'La cuenta o tarjeta son del cliente o no existen.');
+                    SELECT COUNT(*)
+                    INTO atrTempCuentaTarjeta
+                    FROM TARJETA
+                    WHERE Numero_Tarjeta = idCuentaNumTarjeta AND id_cliente = idClienteR;
+
+                    IF atrTempCuentaTarjeta = 0 THEN
+                        RAISE_APPLICATION_ERROR(-20007, 'La tarjeta no pertenece al cliente o no existe.');
+                    END IF;
+                ELSE
+                   
+                    SELECT COUNT(*)
+                    INTO atrTempCuentaTarjeta
+                    FROM CUENTA
+                    WHERE id = idCuentaNumTarjeta AND id_cliente = idClienteR;
+
+                    IF atrTempCuentaTarjeta = 0 THEN
+                        RAISE_APPLICATION_ERROR(-20003, 'La cuenta no pertenece al cliente o no existe.');
+                    END IF;
                 END IF;
             END;
 
