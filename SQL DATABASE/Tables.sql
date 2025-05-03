@@ -1,0 +1,179 @@
+-- CREACION DE LAS TABLAS
+CREATE TABLE TIPOCLIENTE(
+    id NUMBER PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    descripcion VARCHAR2(500) NOT NULL,
+    creation DATE DEFAULT SYSDATE,
+    Data_Update DATE DEFAULT SYSDATE
+);
+CREATE SEQUENCE seq_tipo_cliente START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE TIPOCUENTAS(
+    id NUMBER PRIMARY KEY,
+    nombre VARCHAR(35) NOT NULL,
+    descripcion VARCHAR2(105) NOT NULL,
+    creation DATE DEFAULT SYSDATE,
+    Data_Update DATE DEFAULT SYSDATE
+);
+CREATE SEQUENCE seq_tipo_cuenta START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE TIPOTARJETA(
+    id NUMBER PRIMARY KEY,
+    nombre VARCHAR(35) NOT NULL
+);
+
+CREATE TABLE TIPOSERVICIO(
+    id NUMBER PRIMARY KEY,
+    nombre VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE TIPOSEGURO(
+    id NUMBER PRIMARY KEY,
+    nombre VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE TIPOTRANSACCION(
+    id NUMBER PRIMARY KEY,
+    nombre VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE TIPOREMESA(
+    id NUMBER PRIMARY KEY,
+    nombre VARCHAR(10)
+);
+-- TIPOPREMIO pendiente
+
+CREATE TABLE TIPONOTIFICACION(
+    id NUMBER PRIMARY KEY,
+    nombre VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE INFOCLIENTE(
+    id NUMBER PRIMARY KEY,
+    telefono varchar(12) NOT NULL,
+    correo varchar(50) NOT NULL,
+    usuario varchar(50) NOT NULL,
+    pass varchar(100) NOT NULL
+);
+CREATE SEQUENCE seq_info_cliente START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE ACCESOS(
+    id NUMBER PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    pass VARCHAR(100) NOT NULL
+);
+-------------------------------------------------------------------------------
+
+CREATE TABLE SERVICIO(
+    id NUMBER PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    monto DECIMAL NOT NULL,
+    id_tipo_servicio NUMBER NOT NULL REFERENCES TIPOSERVICIO(id)
+);
+
+CREATE TABLE CLIENTE(
+    id NUMBER PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    fecha_nacimiento DATE NOT NULL,
+    id_tipo_cliente NUMBER NOT NULL REFERENCES TIPOCLIENTE(id),
+    id_info_cliente NUMBER NOT NULL REFERENCES INFOCLIENTE(id),
+    creation DATE DEFAULT SYSDATE,
+    Data_Update DATE DEFAULT SYSDATE
+);
+CREATE SEQUENCE seq_cliente START WITH 1 INCREMENT BY 1;
+--------------------------------------------------------------------------------
+CREATE TABLE TIPOPREMIO(
+    id NUMBER PRIMARY KEY,
+    nombre VARCHAR(25) NOT NULL,
+    descripcion VARCHAR2(500) NOT NULL,
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id)
+);
+
+CREATE TABLE NOTIFICACION(
+    id NUMBER PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
+    id_tipo_notificacion NUMBER NOT NULL REFERENCES TIPONOTIFICACION(id)
+);
+
+CREATE TABLE CUENTA(
+    id NUMBER PRIMARY KEY,
+    numero_cuenta NUMBER(16,0) NOT NULL, --Generar random no repetible
+    MontoApertura DECIMAL NOT NULL,
+    Saldo DECIMAL NOT NULL,
+    descripcion VARCHAR(100) NOT NULL,
+    fecha_apertura TIMESTAMP NOT NULL,
+    id_tipo_cuenta NUMBER NOT NULL REFERENCES TIPOCUENTAS(id),
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
+    detalles_extra VARCHAR(100),
+    creation DATE DEFAULT SYSDATE,
+    Data_Update DATE DEFAULT SYSDATE
+);
+CREATE SEQUENCE seq_cuenta START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE TARJETA(
+    id NUMBER PRIMARY KEY,
+    tipo CHAR NOT NULL,
+    Numero_Tarjeta NUMBER(16,0) NOT NULL,
+    moneda CHAR NOT NULL,
+    monto_limite DECIMAL NOT NULL,
+    Dia_corte NUMBER,
+    Dia_pago NUMBER,
+    Tasa_interes DECIMAL NOT NULL,
+    fecha_expedicion DATE NOT NULL,
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
+    id_tipo_tarjeta NUMBER NOT NULL REFERENCES TIPOTARJETA(id),
+    creation_date DATE DEFAULT SYSDATE,
+    Data_Update DATE DEFAULT SYSDATE
+);
+CREATE SEQUENCE seq_tarjeta START WITH 1 INCREMENT BY 1;
+
+
+CREATE TABLE PRODUCTO_SERVICIO(
+    id NUMBER PRIMARY KEY,
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
+    id_servicio NUMBER NOT NULL REFERENCES SERVICIO(id)
+);
+
+CREATE TABLE SEGURO(
+    id NUMBER PRIMARY KEY,
+    monto_asegurado DECIMAL NOT NULL,
+    valor_seguro DECIMAL NOT NULL,
+    cantidad_pagos NUMBER NOT NULL,
+    meses_asegurado INTEGER NOT NULL,
+    contratacion DATE NOT NULL,
+    fecha_vencimiento DATE NOT NULL,
+    id_tipo_seguro NUMBER NOT NULL REFERENCES TIPOSEGURO(id),
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
+    creation DATE DEFAULT SYSDATE,
+    Data_Update DATE DEFAULT SYSDATE
+);
+CREATE SEQUENCE seq_seguro START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE TRANSACCION(
+    id NUMBER PRIMARY KEY,
+    id_tipotrans NUMBER NOT NULL REFERENCES TIPOTRANSACCION(id),
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
+    id_cuenta_origen NUMBER NOT NULL REFERENCES CUENTA(id),
+    id_cuenta_destino NUMBER NOT NULL REFERENCES CUENTA(id)
+);
+
+CREATE TABLE PRESTAMO(
+    id NUMBER PRIMARY KEY,
+    monto_prestamo DECIMAL NOT NULL,
+    tasa_interes DECIMAL NOT NULL,
+    meses INTEGER NOT NULL,
+    contratacion DATE NOT NULL,
+    fecha_vencimiento DATE NOT NULL,
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id)
+);
+
+CREATE TABLE REMESA(
+    id NUMBER PRIMARY KEY,
+    pais VARCHAR(15) NOT NULL,
+    fecha DATE NOT NULL,
+    id_cliente NUMBER NOT NULL REFERENCES CLIENTE(id),
+    id_tipo_remesa NUMBER NOT NULL REFERENCES TIPOREMESA(id),
+    id_tipo_cuenta NUMBER NOT NULL REFERENCES CUENTA(id)
+); 

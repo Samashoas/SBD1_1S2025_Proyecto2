@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="386A0F15-4E11-89CB-07AB-47EE7716F10C" name="TipoClientes">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>1299FC0F-E9B8-6394-A644-6C02E876D02D</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="058B2331-BF37-60BF-E5E4-A7694D6AE59C">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>5B6966E3-2694-C79D-ECCF-678B3D23BB93</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="81C9A528-4C3F-3097-E05D-7924214BD8E3">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>E0628A82-B27B-49CC-B64C-02A19D1336A7</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25</dataTypeSize>
+<ownDataTypeParameters>25,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Descripcion" id="EBDB1004-623D-A83E-868D-D7136D63F2A1">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>247DC90C-5B21-172E-C043-ED6AAD46A1AC</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Cliente_ID" id="656EDDA9-1515-FFEB-2224-244F62A53353">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>9F3A145B-139D-8868-FE64-B2E9E7D63DAB</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0A84BADD-83A9-6BEC-60E7-E438F9198D00" referredColumn="C908FDB5-B12F-4E83-0351-08E7FF255A49"/>
+</associations>
+</Column>
+<Column name="Cliente_ID1" id="8C79CFAF-F04C-41B5-7DA3-590C0956F552">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-16 18:51:00 UTC</createdTime>
+<generatorID>AAF03A44-B8F4-CF3A-A509-544C6E3A2322</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="982936B8-88CE-9B17-9B9A-3788A9197B72" referredColumn="C908FDB5-B12F-4E83-0351-08E7FF255A49"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8FEF9E1D-9271-8EAF-CB4B-1350917EC4AE" name="TipoClientes_PK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>308F16F9-3C8D-8F8F-20DA-DF1874425C38</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="058B2331-BF37-60BF-E5E4-A7694D6AE59C"/>
+<colUsage columnID="8C79CFAF-F04C-41B5-7DA3-590C0956F552"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1194329B-4DF4-B37D-979D-647D36F9406D" name="TipoClientes__IDX">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>E7024C4D-6646-C85B-836C-E68D2B3542AF</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="656EDDA9-1515-FFEB-2224-244F62A53353"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F1152DE4-5EE1-D864-A776-F59E564A2DBF" name="TipoClientes_Cliente_FK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:48:38 UTC</createdTime>
+<generatorID>E7024C4D-6646-C85B-836C-E68D2B3542AF</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="656EDDA9-1515-FFEB-2224-244F62A53353"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="95557C76-62AC-0D6E-B571-8F85C07B7226" name="TipoClientes_Cliente_FKv1">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-16 18:51:00 UTC</createdTime>
+<generatorID>08C21B26-CB83-B325-7AE0-19A3D7E12FDB</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8C79CFAF-F04C-41B5-7DA3-590C0956F552"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

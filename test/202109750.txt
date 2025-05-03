@@ -1,0 +1,12 @@
+1 Crear cliente lleva la fecha exacta de creación y modificación
+2 Registrar Tipo de cliente lleva la fecha exacta de creación y modificación
+3 Crear Cuenta también lleva la fecha exacta de su creación y modificación
+4 Tipo de cuenta fecha de creación y modificación
+5 Solicitar tarjeta fecha de creación y modificación
+6 Adquirir producto/servicio fecha de creación y modificación
+7 Adquirir seguro fecha de creación y modificación
+8 Realizar transacción fecha de creación y modificación
+9 Adquirir préstamo fecha de creación y modificación
+
+- Procesamiento de datos (funciones) pa mi.
+

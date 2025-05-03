@@ -1,0 +1,167 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="AC8B79D6-3E5A-9B39-4BE8-170FC974D8AE" name="Seguro">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:11:42 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="08FF21F2-2A43-F247-04EA-4C0B433816EE">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:11:48 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_TipoSeguro" id="8FA86147-D009-3D29-F0F4-612FF0B57B65">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:12:07 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_Cliente" id="3764BB14-9696-CE19-F034-834E0955FC15">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:12:22 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="MontoAsegurado" id="D0A7443A-C5D3-BF46-55B4-E32E1FCB8682">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:12:33 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ValorSeguro" id="7E14EBB7-BD13-44E8-E37B-9809B277BA2E">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:12:47 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CantidadPagos" id="52DE13C4-425C-8B7D-DA82-CFF165BDF424">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:13:04 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="MesesAsegurado" id="8392DC66-BA7C-A452-3AA3-7B4CB9018230">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:13:12 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Contratacion" id="4E2AAA57-577D-6994-277D-250F7C2F01FF">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:13:21 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Vencimiento" id="6DF594F9-C84D-2F9F-FEA6-A77448E79FB7">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:13:29 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID1" id="5BA5AC59-0D3C-4754-6A8D-2F1A868E2515">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:14:41 UTC</createdTime>
+<generatorID>B22B7690-0C7E-E8E6-D6D7-16EBD3FA265F</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<referedAttribute>37B80FE3-4157-FC86-3D62-20C599F1922B</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="C7A6DAF0-3C55-58A6-94FD-E29D5A0467D3" name="Seguro PK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-14 23:12:05 UTC</createdTime>
+<ownerDesignName>modeloP2</ownerDesignName>
+<engineerTo>
+<item key="E007EABF-8F41-E87A-5A97-CF53F5A91D30" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>08FF21F2-2A43-F247-04EA-4C0B433816EE</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

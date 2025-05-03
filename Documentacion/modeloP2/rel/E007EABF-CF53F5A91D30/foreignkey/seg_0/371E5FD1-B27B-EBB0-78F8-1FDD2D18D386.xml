@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="371E5FD1-B27B-EBB0-78F8-1FDD2D18D386" containerWithKeyObject="798A05D7-E284-BD21-B70D-70E448720E02" localFKIndex="E594DE67-2053-99D2-F0BC-5A8B97D9EBFA" name="Remesa_Cuenta_FK">
+<createdBy>SuperUser</createdBy>
+<createdTime>2025-04-16 18:51:00 UTC</createdTime>
+<generatorID>5AF6CCB7-9CB0-F3E3-8959-B47FC01D6AC6</generatorID>
+<ownerDesignName>modeloP2</ownerDesignName>
+<referredTableLongName>Cuenta</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>6FF1E021-233E-348A-E181-C39A8D3825AA</referredTableID>
+<keyObject>A06C6DEB-5427-D317-F4F2-0B91FE644DDB</keyObject>
+<referredKeyID>A06C6DEB-5427-D317-F4F2-0B91FE644DDB</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID,TipoCuenta_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

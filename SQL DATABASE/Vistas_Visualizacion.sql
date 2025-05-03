@@ -1,0 +1,380 @@
+SET SERVEROUTPUT ON;
+
+-- 1. Vista de seguros activos
+BEGIN
+   EXECUTE IMMEDIATE 'DROP VIEW vw_active_insurances_v2';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN  -- Si el error no es "vista no existe"
+         RAISE;
+      END IF;
+END;
+/
+
+CREATE OR REPLACE VIEW vw_active_insurances_v2 AS
+SELECT 
+    ts.nombre AS tipo_seguro,
+    -- Información del seguro
+    s.monto_asegurado,
+    s.valor_seguro,
+    s.cantidad_pagos,
+    s.meses_asegurado,
+    s.contratacion,
+    s.fecha_vencimiento,
+    -- Información del cliente
+    c.nombre AS nombre_cliente,
+    c.apellido AS apellido_cliente,
+    ic.telefono,
+    ic.correo
+FROM 
+    SEGURO s
+    JOIN TIPOSEGURO ts ON s.id_tipo_seguro = ts.id
+    JOIN CLIENTE c ON s.id_cliente = c.id
+    JOIN INFOCLIENTE ic ON c.id_info_cliente = ic.id
+WHERE 
+    s.fecha_vencimiento > SYSDATE  -- Solo seguros activos
+ORDER BY 
+    s.fecha_vencimiento  -- Ordenar por fecha de vencimiento más cercana primero
+/
+
+-- Para verificar que la vista se creó correctamente
+SELECT * FROM vw_active_insurances_v2;
+
+-- 2. Vista de seguros inactivos
+BEGIN
+   EXECUTE IMMEDIATE 'DROP VIEW vw_inactive_insurances_v2';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN  -- Si el error no es "vista no existe"
+         RAISE;
+      END IF;
+END;
+/
+
+CREATE OR REPLACE VIEW vw_inactive_insurances_v2 AS
+SELECT 
+    ts.nombre AS tipo_seguro,
+    -- Información del seguro
+    s.monto_asegurado,
+    s.valor_seguro,
+    s.cantidad_pagos,
+    s.meses_asegurado,
+    s.contratacion,
+    s.fecha_vencimiento,
+    -- Información del cliente
+    c.nombre AS nombre_cliente,
+    c.apellido AS apellido_cliente,
+    ic.telefono,
+    ic.correo
+FROM 
+    SEGURO s
+    JOIN TIPOSEGURO ts ON s.id_tipo_seguro = ts.id
+    JOIN CLIENTE c ON s.id_cliente = c.id
+    JOIN INFOCLIENTE ic ON c.id_info_cliente = ic.id
+WHERE 
+    s.fecha_vencimiento <= SYSDATE  -- Solo seguros inactivos/vencidos
+ORDER BY 
+    s.fecha_vencimiento DESC  -- Ordenar por fecha de vencimiento más reciente primero
+/
+
+-- Para verificar que la vista se creó correctamente
+SELECT * FROM vw_inactive_insurances_v2;
+
+-- 3. Vista de préstamos activos
+BEGIN
+   EXECUTE IMMEDIATE 'DROP VIEW vw_active_loans_v2';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN  -- Si el error no es "vista no existe"
+         RAISE;
+      END IF;
+END;
+/
+
+CREATE OR REPLACE VIEW vw_active_loans_v2 AS
+SELECT 
+    -- Información del préstamo
+    p.monto_prestamo,
+    p.tasa_interes,
+    p.meses,
+    p.contratacion,
+    p.fecha_vencimiento,
+    -- Información del cliente
+    c.nombre AS nombre_cliente,
+    c.apellido AS apellido_cliente,
+    ic.telefono,
+    ic.correo
+FROM 
+    PRESTAMO p
+    JOIN CLIENTE c ON p.id_cliente = c.id
+    JOIN INFOCLIENTE ic ON c.id_info_cliente = ic.id
+WHERE 
+    p.fecha_vencimiento > SYSDATE  -- Solo préstamos activos
+ORDER BY 
+    p.fecha_vencimiento  -- Ordenar por fecha de vencimiento más cercana primero
+/
+
+-- Para verificar que la vista se creó correctamente
+SELECT * FROM vw_active_loans_v2;
+
+
+-- 5. Vista de préstamos inactivos
+BEGIN
+   EXECUTE IMMEDIATE 'DROP VIEW vw_inactive_loans_v2';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN  -- Si el error no es "vista no existe"
+         RAISE;
+      END IF;
+END;
+/
+
+CREATE OR REPLACE VIEW vw_inactive_loans_v2 AS
+SELECT 
+    -- Información del préstamo
+    p.monto_prestamo,
+    p.tasa_interes,
+    p.meses,
+    p.contratacion,
+    p.fecha_vencimiento,
+    -- Información del cliente
+    c.nombre AS nombre_cliente,
+    c.apellido AS apellido_cliente,
+    ic.telefono,
+    ic.correo
+FROM 
+    PRESTAMO p
+    JOIN CLIENTE c ON p.id_cliente = c.id
+    JOIN INFOCLIENTE ic ON c.id_info_cliente = ic.id
+WHERE 
+    p.fecha_vencimiento <= SYSDATE  -- Solo préstamos inactivos/vencidos
+ORDER BY 
+    p.fecha_vencimiento DESC  -- Ordenar por fecha de vencimiento más reciente primero
+/
+
+-- Para verificar que la vista se creó correctamente
+SELECT * FROM vw_inactive_loans_v2;
+
+-- 6. Vista de tarjetas de crédito vigentes
+BEGIN
+   EXECUTE IMMEDIATE 'DROP VIEW vw_active_credit_cards_v2';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN  -- Si el error no es "vista no existe"
+         RAISE;
+      END IF;
+END;
+/
+
+CREATE OR REPLACE VIEW vw_active_credit_cards_v2 AS
+SELECT 
+    -- Información de la tarjeta
+    tt.nombre AS tipo_tarjeta,
+    t.Numero_Tarjeta,
+    t.moneda,
+    t.monto_limite,
+    t.Dia_corte,
+    t.Dia_pago,
+    t.Tasa_interes,
+    t.fecha_expedicion,
+    -- Información del cliente
+    c.nombre AS nombre_cliente,
+    c.apellido AS apellido_cliente,
+    ic.telefono,
+    ic.correo
+FROM 
+    TARJETA t
+    JOIN TIPOTARJETA tt ON t.id_tipo_tarjeta = tt.id
+    JOIN CLIENTE c ON t.id_cliente = c.id
+    JOIN INFOCLIENTE ic ON c.id_info_cliente = ic.id
+WHERE 
+    t.tipo = 'C'  -- Solo tarjetas de crédito
+    AND t.fecha_expedicion <= SYSDATE  -- Tarjetas ya expedidas
+    AND t.monto_limite > 0  -- Con límite de crédito activo
+ORDER BY 
+    tt.nombre, c.apellido, c.nombre
+/
+
+-- Para verificar que la vista se creó correctamente
+SELECT * FROM vw_active_credit_cards_v2;
+
+
+-- 7. Vista de tarjetas de débito vigentes
+BEGIN
+   EXECUTE IMMEDIATE 'DROP VIEW vw_active_debit_cards_v2';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN  -- Si el error no es "vista no existe"
+         RAISE;
+      END IF;
+END;
+/
+
+CREATE OR REPLACE VIEW vw_active_debit_cards_v2 AS
+SELECT 
+    -- Información de la tarjeta
+    tt.nombre AS tipo_tarjeta,
+    t.Numero_Tarjeta,
+    t.moneda,
+    t.fecha_expedicion,
+    -- Información del cliente
+    c.nombre AS nombre_cliente,
+    c.apellido AS apellido_cliente,
+    ic.telefono,
+    ic.correo
+FROM 
+    TARJETA t
+    JOIN TIPOTARJETA tt ON t.id_tipo_tarjeta = tt.id
+    JOIN CLIENTE c ON t.id_cliente = c.id
+    JOIN INFOCLIENTE ic ON c.id_info_cliente = ic.id
+WHERE 
+    t.tipo = 'D'  -- Solo tarjetas de débito
+    AND t.fecha_expedicion <= SYSDATE  -- Tarjetas ya expedidas
+ORDER BY 
+    tt.nombre, c.apellido, c.nombre
+/
+
+-- Para verificar que la vista se creó correctamente
+SELECT * FROM vw_active_debit_cards_v2;
+
+-- 8. Vista de transacciones (depósitos/débitos)
+BEGIN
+   EXECUTE IMMEDIATE 'DROP VIEW vw_transactions_v2';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN  -- Si el error no es "vista no existe"
+         RAISE;
+      END IF;
+END;
+/
+
+CREATE OR REPLACE VIEW vw_transactions_v2 AS
+SELECT 
+    -- Información de la cuenta
+    tc.nombre AS tipo_cuenta,
+    c.numero_cuenta,
+    c.Saldo AS saldo_actual,
+    -- Información de la transacción
+    tt.nombre AS tipo_transaccion,
+    t.fecha_inicial_transaccion,
+    -- Información del cliente
+    cl.nombre AS nombre_cliente,
+    cl.apellido AS apellido_cliente,
+    ic.telefono,
+    ic.correo
+FROM 
+    TRANSACCION t
+    JOIN TIPOTRANSACCION tt ON t.id_tipotrans = tt.id
+    JOIN CUENTA c ON t.id_cuenta_origen = c.id
+    JOIN TIPOCUENTAS tc ON c.id_tipo_cuenta = tc.id
+    JOIN CLIENTE cl ON t.id_cliente = cl.id
+    JOIN INFOCLIENTE ic ON cl.id_info_cliente = ic.id
+WHERE 
+    tt.nombre IN ('Depósito', 'Retiro')  -- Solo depósitos y retiros
+ORDER BY 
+    t.fecha_inicial_transaccion DESC  -- Transacciones más recientes primero
+/
+
+-- Para verificar que la vista se creó correctamente
+SELECT * FROM vw_transactions_v2;
+
+-- 9. Vista de transacciones relacionadas con tarjetas
+BEGIN
+   EXECUTE IMMEDIATE 'DROP VIEW vw_card_transactions_v2';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN  -- Si el error no es "vista no existe"
+         RAISE;
+      END IF;
+END;
+/
+
+CREATE OR REPLACE VIEW vw_card_transactions_v2 AS
+SELECT 
+    -- Información de la tarjeta
+    tt.nombre AS tipo_tarjeta,
+    t.tipo AS tipo_tarjeta_general,  -- 'D' para débito, 'C' para crédito
+    t.Numero_Tarjeta,
+    t.moneda,
+    -- Información de la transacción
+    ttr.nombre AS tipo_transaccion,
+    tr.fecha_inicial_transaccion,
+    -- Información del cliente
+    c.nombre AS nombre_cliente,
+    c.apellido AS apellido_cliente,
+    ic.telefono,
+    ic.correo
+FROM 
+    TARJETA t
+    JOIN TIPOTARJETA tt ON t.id_tipo_tarjeta = tt.id
+    JOIN CLIENTE c ON t.id_cliente = c.id
+    JOIN INFOCLIENTE ic ON c.id_info_cliente = ic.id
+    JOIN TRANSACCION tr ON tr.id_cliente = c.id
+    JOIN TIPOTRANSACCION ttr ON tr.id_tipotrans = ttr.id
+WHERE 
+    tr.id_cuenta_origen IN (
+        SELECT cu.id 
+        FROM CUENTA cu 
+        WHERE cu.id_cliente = c.id
+    )
+ORDER BY 
+    tr.fecha_inicial_transaccion DESC, -- Transacciones más recientes primero
+    t.Numero_Tarjeta
+/
+
+-- Para verificar que la vista se creó correctamente
+SELECT * FROM vw_card_transactions_v2;
+
+-- 10. Vista de productos/servicios adquiridos por clientes
+BEGIN
+   EXECUTE IMMEDIATE 'DROP VIEW vw_products_v2';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN  -- Si el error no es "vista no existe"
+         RAISE;
+      END IF;
+END;
+/
+
+CREATE OR REPLACE VIEW vw_products_v2 AS
+SELECT 
+    -- Información del servicio
+    ts.nombre AS tipo_servicio,
+    s.nombre AS nombre_servicio,
+    s.monto AS monto_servicio,
+    ps.fecha_contratacion,
+    -- Información de la cuenta/tarjeta asociada
+    CASE 
+        WHEN cu.id IS NOT NULL THEN tc.nombre
+        WHEN t.id IS NOT NULL THEN tt.nombre
+        ELSE NULL
+    END AS tipo_producto,
+    CASE 
+        WHEN cu.id IS NOT NULL THEN cu.numero_cuenta
+        WHEN t.id IS NOT NULL THEN t.Numero_Tarjeta
+        ELSE NULL
+    END AS numero_producto,
+    -- Información del cliente
+    c.nombre AS nombre_cliente,
+    c.apellido AS apellido_cliente,
+    ic.telefono,
+    ic.correo
+FROM 
+    PRODUCTO_SERVICIO ps
+    JOIN SERVICIO s ON ps.id_servicio = s.id
+    JOIN TIPOSERVICIO ts ON s.id_tipo_servicio = ts.id
+    JOIN CLIENTE c ON ps.id_cliente = c.id
+    JOIN INFOCLIENTE ic ON c.id_info_cliente = ic.id
+    LEFT JOIN CUENTA cu ON c.id = cu.id_cliente
+    LEFT JOIN TIPOCUENTAS tc ON cu.id_tipo_cuenta = tc.id
+    LEFT JOIN TARJETA t ON c.id = t.id_cliente
+    LEFT JOIN TIPOTARJETA tt ON t.id_tipo_tarjeta = tt.id
+ORDER BY 
+    c.apellido,
+    c.nombre,
+    ts.nombre,
+    ps.fecha_contratacion DESC
+/
+
+-- Para verificar que la vista se creó correctamente
+SELECT * FROM vw_products_v2;
